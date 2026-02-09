@@ -159,6 +159,46 @@ nav {
   color: var(--mid); margin-top: 1.5rem;
   opacity: 0; animation: fadeIn 1s ease 3.3s forwards; z-index: 3;
 }
+.news-widget {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  top: 58%;
+  transform: translateY(-50%);
+  z-index: 4;
+  text-align: right;
+}
+.news-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--light);
+}
+.news-items {
+  list-style: none;
+  margin-top: 0.9rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.news-widget:hover .news-items,
+.news-widget:focus-within .news-items {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.news-items a {
+  color: var(--white);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.news-items a:hover {
+  color: var(--pure-white);
+  border-color: var(--pure-white);
+}
 @keyframes fadeIn { to { opacity: 1; } }
 
 /* Social row */
@@ -204,6 +244,12 @@ nav {
   .nav-links.open a { font-size: 1.2rem; }
   .hero-portrait-wrap { width: clamp(280px, 75vw, 400px); }
   .hero-socials { gap: 1.5rem; flex-wrap: wrap; justify-content: center; width: 90%; }
+  .news-widget {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 1.2rem;
+  }
 }
 </style>
 </head>
@@ -236,6 +282,17 @@ nav {
   <h1 class="hero-name">FAIZAN MIR</h1>
   <p class="hero-title">Founder & CEO, Nearhuman</p>
   <p class="hero-tagline">Building the future — one idea at a time</p>
+
+  <div class="news-widget">
+    <p class="news-label">News</p>
+    <ul class="news-items">
+      <li>
+        <a href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
+          Embattled Lanes of Kashmir: Self-Taught Inventors
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <div class="hero-socials">
     <a href="https://www.linkedin.com/in/faizanfaiiz/" target="_blank">LinkedIn</a>
