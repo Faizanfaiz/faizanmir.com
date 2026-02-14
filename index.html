@@ -159,57 +159,78 @@ nav {
   color: var(--mid); margin-top: 1.5rem;
   opacity: 0; animation: fadeIn 1s ease 3.3s forwards; z-index: 3;
 }
-.hero-right-hover-zone {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: clamp(80px, 13vw, 220px);
-  height: 100%;
-  z-index: 2;
-}
 .news-widget {
   position: absolute;
   right: clamp(1rem, 4vw, 3rem);
-  top: 57%;
+  top: 50%;
   transform: translateY(-50%);
-  z-index: 4;
-  width: min(340px, 32vw);
-
+  z-index: 5;
+  width: min(360px, 34vw);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .news-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.35em;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--light);
-  text-align: right;
-  margin-bottom: 0.8rem;
+  color: var(--pure-white);
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.62);
+}
+.news-panel {
+  width: 100%;
+  margin-top: 0.85rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(34px);
+  pointer-events: none;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
 }
 .news-card {
   display: block;
   text-decoration: none;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.28);
   border-radius: 12px;
   overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(16px);
-  pointer-events: none;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+  backdrop-filter: blur(2px);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
-.hero-right-hover-zone:hover ~ .news-widget .news-card,
-.news-widget:hover .news-card,
-.news-widget:focus-within .news-card {
+.news-widget:hover .news-panel,
+.news-widget:focus-within .news-panel {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
   pointer-events: auto;
 }
+.hero .hero-portrait-wrap,
+.hero .hero-name,
+.hero .hero-title,
+.hero .hero-tagline,
+.hero .hero-socials {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero:has(.news-widget:hover) .hero-portrait-wrap,
+.hero:has(.news-widget:focus-within) .hero-portrait-wrap,
+.hero:has(.news-widget:hover) .hero-name,
+.hero:has(.news-widget:focus-within) .hero-name,
+.hero:has(.news-widget:hover) .hero-title,
+.hero:has(.news-widget:focus-within) .hero-title,
+.hero:has(.news-widget:hover) .hero-tagline,
+.hero:has(.news-widget:focus-within) .hero-tagline,
+.hero:has(.news-widget:hover) .hero-socials,
+.hero:has(.news-widget:focus-within) .hero-socials {
+  transform: translateX(clamp(-120px, -13vw, -220px));
+}
 .news-card:hover,
 .news-card:focus-visible {
   transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.52);
+  background: rgba(255,255,255,0.09);
 }
 .news-image {
   width: 100%;
@@ -219,7 +240,7 @@ nav {
 }
 .news-headline {
   color: var(--pure-white);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.45;
   padding: 0.85rem 1rem 1rem;
 }
@@ -268,15 +289,18 @@ nav {
   .nav-links.open a { font-size: 1.2rem; }
   .hero-portrait-wrap { width: clamp(280px, 75vw, 400px); }
   .hero-socials { gap: 1.5rem; flex-wrap: wrap; justify-content: center; width: 90%; }
-  .hero-right-hover-zone { display: none; }
   .news-widget {
     position: static;
     transform: none;
     width: min(92vw, 360px);
     margin-top: 1.2rem;
+    align-items: center;
   }
-  .news-label { text-align: center; }
-  .news-card {
+  .news-label {
+    text-align: center;
+    font-size: 1.05rem;
+  }
+  .news-panel {
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -322,6 +346,16 @@ nav {
       <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
     </a>
  main
+  </div>
+
+  <div class="news-widget" tabindex="0">
+    <p class="news-label">News</p>
+    <div class="news-panel">
+      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
+        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
+        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
+      </a>
+    </div>
   </div>
 
   <div class="hero-socials">
