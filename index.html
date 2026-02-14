@@ -186,9 +186,9 @@ nav {
   margin-top: 0.85rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(34px);
+  transform: translateX(52px) scale(0.98);
   pointer-events: none;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, visibility 0.45s ease;
 }
 .news-card {
   display: block;
@@ -201,7 +201,7 @@ nav {
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 .news-widget:hover .news-panel,
-.news-widget:focus-within .news-panel {
+.news-widget.news-open .news-panel {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
@@ -214,16 +214,12 @@ nav {
 .hero .hero-socials {
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.hero:has(.news-widget:hover) .hero-portrait-wrap,
-.hero:has(.news-widget:focus-within) .hero-portrait-wrap,
-.hero:has(.news-widget:hover) .hero-name,
-.hero:has(.news-widget:focus-within) .hero-name,
-.hero:has(.news-widget:hover) .hero-title,
-.hero:has(.news-widget:focus-within) .hero-title,
-.hero:has(.news-widget:hover) .hero-tagline,
-.hero:has(.news-widget:focus-within) .hero-tagline,
-.hero:has(.news-widget:hover) .hero-socials,
-.hero:has(.news-widget:focus-within) .hero-socials {
+
+.hero.news-active .hero-portrait-wrap,
+.hero.news-active .hero-name,
+.hero.news-active .hero-title,
+.hero.news-active .hero-tagline,
+.hero.news-active .hero-socials {
   transform: translateX(clamp(-120px, -13vw, -220px));
 }
 .news-card:hover,
@@ -358,6 +354,16 @@ nav {
     </div>
   </div>
 
+  <div class="news-widget">
+    <p class="news-label">News</p>
+    <div class="news-panel">
+      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
+        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
+        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
+      </a>
+    </div>
+  </div>
+
   <div class="hero-socials">
     <a href="https://www.linkedin.com/in/faizanfaiiz/" target="_blank">LinkedIn</a>
     <div class="sep"></div>
@@ -390,6 +396,28 @@ document.querySelectorAll('a').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
+
+
+// News panel interaction
+const hero = document.getElementById('hero');
+const newsWidget = document.querySelector('.news-widget');
+if (hero && newsWidget) {
+  const openNews = () => {
+    hero.classList.add('news-active');
+    newsWidget.classList.add('news-open');
+  };
+  const closeNews = () => {
+    hero.classList.remove('news-active');
+    newsWidget.classList.remove('news-open');
+  };
+
+  newsWidget.addEventListener('mouseenter', openNews);
+  newsWidget.addEventListener('mouseleave', closeNews);
+  newsWidget.addEventListener('focusin', openNews);
+  newsWidget.addEventListener('focusout', (event) => {
+    if (!newsWidget.contains(event.relatedTarget)) closeNews();
+  });
+}
 
 // ====== PARALLAX PORTRAIT — subtle, hover-only ======
 const portrait = document.getElementById('portrait');
