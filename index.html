@@ -10,14 +10,12 @@
 :root {
   --black: #000000;
   --dark: #0a0a0a;
-  --dark2: #111111;
-  --dark3: #1a1a1a;
   --grey: #333333;
   --mid: #666666;
   --light: #999999;
-  --lighter: #cccccc;
   --white: #f0f0f0;
   --pure-white: #ffffff;
+  --panel-width: min(420px, 40vw);
 }
 html { overflow-x: hidden; }
 body {
@@ -26,16 +24,16 @@ body {
   overflow-x: hidden; cursor: default; min-height: 100vh;
 }
 
-/* Cursor */
+/* ====== CURSOR ====== */
 .cursor {
   width: 16px; height: 16px; border: 2px solid var(--white);
   border-radius: 50%; position: fixed; pointer-events: none;
-  z-index: 10000; mix-blend-mode: difference;
+  z-index: 10001; mix-blend-mode: difference;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 .cursor.hover { transform: scale(3); opacity: 0.5; }
 
-/* Loader */
+/* ====== LOADER ====== */
 .loader {
   position: fixed; inset: 0; background: var(--black); z-index: 9999;
   display: flex; align-items: center; justify-content: center; flex-direction: column;
@@ -63,7 +61,7 @@ body {
 }
 @keyframes loadBar { to { width: 100%; } }
 
-/* Nav */
+/* ====== NAV ====== */
 nav {
   position: fixed; top: 0; width: 100%; z-index: 1000;
   padding: 1.5rem 3rem;
@@ -95,12 +93,9 @@ nav {
 /* ====== HERO ====== */
 .hero {
   min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
 }
-
-/* Radial glow */
 .hero::before {
   content: ''; position: absolute;
   top: 46%; left: 50%; transform: translate(-50%, -50%);
@@ -109,34 +104,37 @@ nav {
   pointer-events: none; z-index: 0;
 }
 
-/* Portrait — parallax container */
+/* Hero center — shifts left */
+.hero-center {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 3;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero.news-active .hero-center {
+  transform: translateX(clamp(-180px, -16vw, -260px));
+  filter: blur(4px) brightness(0.65);
+  opacity: 0.55;
+}
+
+/* Portrait */
 .hero-portrait-wrap {
   position: relative; z-index: 2;
   opacity: 0; transform: scale(0.92);
   animation: fadeScale 1.2s ease 2.2s forwards;
-  /* Hide overflow so the extra size from scale isn't visible at rest */
   overflow: hidden;
-  /* Slightly larger than the image so it has room to move without showing edges */
   width: clamp(300px, 42vw, 520px);
-  /* Mask edges with a radial/bottom fade */
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 }
-
 .hero-portrait {
-  display: block;
-  /* Image is slightly larger than container — gives room to translate without showing edges */
-  width: 115%;
-  margin-left: -7.5%;
-  margin-top: -4%;
-  height: auto;
-  object-fit: contain;
+  display: block; width: 115%; margin-left: -7.5%; margin-top: -4%;
+  height: auto; object-fit: contain;
   filter: grayscale(100%) contrast(1.08) brightness(1.05);
-  /* Smooth eased movement — this is what makes it feel like Lando's site */
   will-change: transform;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 @keyframes fadeScale { to { opacity: 1; transform: scale(1); } }
 
 .hero-name {
@@ -145,108 +143,33 @@ nav {
   letter-spacing: 0.04em; line-height: 0.88;
   text-align: center; margin-top: -1.5rem;
   opacity: 0; animation: fadeIn 1s ease 2.6s forwards;
-  position: relative; z-index: 3;
 }
 .hero-title {
   font-family: 'Instrument Serif', serif; font-style: italic;
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   color: var(--light); margin-top: 0.3rem;
   opacity: 0; animation: fadeIn 1s ease 3s forwards;
-  letter-spacing: 0.05em; z-index: 3;
+  letter-spacing: 0.05em;
 }
 .hero-tagline {
   font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
   color: var(--mid); margin-top: 1.5rem;
-  opacity: 0; animation: fadeIn 1s ease 3.3s forwards; z-index: 3;
-}
-.news-widget {
-  position: absolute;
-  right: clamp(1rem, 4vw, 3rem);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  width: min(360px, 34vw);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-.news-label {
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--pure-white);
-  font-weight: 700;
-  text-align: center;
-  cursor: pointer;
-  padding: 0.4rem 0.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.62);
-}
-.news-panel {
-  width: 100%;
-  margin-top: 0.85rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(52px) scale(0.98);
-  pointer-events: none;
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, visibility 0.45s ease;
-}
-.news-card {
-  display: block;
-  text-decoration: none;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.28);
-  border-radius: 12px;
-  overflow: hidden;
-  backdrop-filter: blur(2px);
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-.news-widget:hover .news-panel,
-.news-widget.news-open .news-panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-.hero .hero-portrait-wrap,
-.hero .hero-name,
-.hero .hero-title,
-.hero .hero-tagline,
-.hero .hero-socials {
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0; animation: fadeIn 1s ease 3.3s forwards;
 }
 
-.hero.news-active .hero-portrait-wrap,
-.hero.news-active .hero-name,
-.hero.news-active .hero-title,
-.hero.news-active .hero-tagline,
-.hero.news-active .hero-socials {
-  transform: translateX(clamp(-120px, -13vw, -220px));
-}
-.news-card:hover,
-.news-card:focus-visible {
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.52);
-  background: rgba(255,255,255,0.09);
-}
-.news-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  display: block;
-}
-.news-headline {
-  color: var(--pure-white);
-  font-size: 0.92rem;
-  line-height: 1.45;
-  padding: 0.85rem 1rem 1rem;
-}
-@keyframes fadeIn { to { opacity: 1; } }
-
-/* Social row */
+/* ====== SOCIAL ROW ====== */
 .hero-socials {
   position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
   display: flex; gap: 2.5rem; align-items: center;
   opacity: 0; animation: fadeIn 1s ease 3.6s forwards; z-index: 3;
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero.news-active .hero-socials {
+  transform: translateX(calc(-50% + clamp(-180px, -16vw, -260px)));
+  filter: blur(3px);
+  opacity: 0.35;
 }
 .hero-socials a {
   color: var(--mid); text-decoration: none;
@@ -265,6 +188,361 @@ nav {
   background: var(--grey); flex-shrink: 0;
 }
 
+/* ====== NEWS ZONE ====== */
+.news-zone {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: var(--panel-width);
+  z-index: 500;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ====== NEWS LABEL — horizontal, closer to center ====== */
+.news-label-wrap {
+  position: absolute;
+  right: clamp(60px, 8vw, 120px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: fadeIn 1s ease 3.6s forwards;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* FULLY DISAPPEAR when active */
+.news-zone.active .news-label-wrap {
+  opacity: 0 !important;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(30px);
+}
+
+.news-label-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--pure-white);
+  transition: text-shadow 0.3s ease;
+}
+.news-label-deco {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.news-label-line {
+  width: 28px; height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+.news-label-dot {
+  width: 5px; height: 5px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  position: relative;
+}
+.news-label-dot::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  animation: pingDot 3s ease-in-out infinite;
+}
+@keyframes pingDot {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.8); opacity: 0; }
+}
+.news-label-pulse {
+  width: 1px; height: 30px;
+  background: rgba(255,255,255,0.15);
+  position: relative; overflow: hidden;
+}
+.news-label-pulse::after {
+  content: '';
+  position: absolute; top: -100%; left: 0;
+  width: 100%; height: 100%;
+  background: var(--pure-white);
+  animation: pulseDown 2.8s ease-in-out infinite;
+}
+@keyframes pulseDown {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+/* ====== NEWS PANEL ====== */
+.news-panel {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(50px);
+  pointer-events: none;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 5;
+}
+.news-zone.active .news-panel {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Panel header */
+.news-panel-header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.5s ease 0.18s, transform 0.5s ease 0.18s;
+}
+.news-zone.active .news-panel-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+.news-panel-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  color: var(--pure-white);
+}
+.news-panel-sub {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--light);
+  margin-top: 0.1rem;
+}
+
+/* Curved card container */
+.news-cards-curved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 1.2rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: visible;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  perspective: 900px;
+}
+.news-cards-curved::-webkit-scrollbar { width: 2px; }
+.news-cards-curved::-webkit-scrollbar-track { background: transparent; }
+.news-cards-curved::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+/* Edge line */
+.news-panel-edge {
+  position: absolute;
+  left: 0; top: 12%; bottom: 12%;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255,255,255,0.06) 25%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.06) 75%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease 0.25s;
+}
+.news-zone.active .news-panel-edge {
+  opacity: 1;
+}
+
+/* ====== GLASS CARD ====== */
+.news-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  flex-shrink: 0;
+  /* ensure cards are clickable */
+  cursor: pointer;
+
+  background: linear-gradient(145deg,
+    rgba(255,255,255,0.07) 0%,
+    rgba(255,255,255,0.015) 50%,
+    rgba(255,255,255,0.05) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  opacity: 0;
+  transform: translateX(35px) scale(0.94);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease,
+              max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.news-card.visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Top shine */
+.news-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.2) 25%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0.2) 75%,
+    transparent 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Reflection sweep */
+.news-card::after {
+  content: '';
+  position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg,
+    transparent 42%,
+    rgba(255,255,255,0.025) 46%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0.025) 54%,
+    transparent 58%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2; pointer-events: none;
+}
+.news-card:hover::after {
+  transform: translateX(25%);
+}
+
+.news-card:hover {
+  border-color: rgba(255,255,255,0.28);
+  background: linear-gradient(145deg,
+    rgba(255,255,255,0.11) 0%,
+    rgba(255,255,255,0.035) 50%,
+    rgba(255,255,255,0.09) 100%
+  );
+  box-shadow:
+    0 8px 28px rgba(0,0,0,0.35),
+    0 0 50px rgba(255,255,255,0.02),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Curved classes */
+.news-card.curved-center {
+  max-width: 360px;
+}
+.news-card.curved-center.visible {
+  transform: translateX(0) scale(1.04);
+}
+.news-card.curved-center:hover {
+  transform: translateX(0) scale(1.06);
+}
+.news-card.curved-edge {
+  max-width: 310px;
+}
+.news-card.curved-edge.visible {
+  transform: translateX(12px) scale(0.94) rotateY(-2deg);
+  opacity: 0.75;
+}
+.news-card.curved-edge:hover {
+  transform: translateX(4px) scale(0.97) rotateY(-1deg);
+  opacity: 1;
+}
+
+/* Card image */
+.news-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+.news-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: grayscale(25%) contrast(1.05);
+  transition: filter 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.news-card:hover .news-card-img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.05);
+}
+.news-card-img-wrap::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 50px;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  pointer-events: none;
+}
+
+/* Card body */
+.news-card-body {
+  padding: 0.8rem 1rem 0.9rem;
+}
+.news-card-source {
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.news-card-headline {
+  color: var(--pure-white);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.news-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.news-card-date {
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  color: var(--mid);
+  text-transform: uppercase;
+}
+.news-card-arrow {
+  width: 20px; height: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.news-card:hover .news-card-arrow {
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.06);
+  transform: translate(1px, -1px);
+}
+.news-card-arrow svg {
+  width: 9px; height: 9px;
+  stroke: var(--light); fill: none; stroke-width: 2;
+  transition: stroke 0.3s ease;
+}
+.news-card:hover .news-card-arrow svg {
+  stroke: var(--pure-white);
+}
+
 /* Grain */
 .grain {
   position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 0.03;
@@ -272,6 +550,9 @@ nav {
   background-repeat: repeat;
 }
 
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ====== MOBILE ====== */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
@@ -285,23 +566,26 @@ nav {
   .nav-links.open a { font-size: 1.2rem; }
   .hero-portrait-wrap { width: clamp(280px, 75vw, 400px); }
   .hero-socials { gap: 1.5rem; flex-wrap: wrap; justify-content: center; width: 90%; }
-  .news-widget {
-    position: static;
-    transform: none;
-    width: min(92vw, 360px);
-    margin-top: 1.2rem;
-    align-items: center;
+  .hero.news-active .hero-center { transform: none; filter: none; opacity: 1; }
+  .hero.news-active .hero-socials { transform: translateX(-50%); filter: none; opacity: 1; }
+
+  .news-zone {
+    position: static; width: 100%; height: auto;
+    flex-direction: column; padding: 2rem 1.5rem 3rem;
   }
-  .news-label {
-    text-align: center;
-    font-size: 1.05rem;
-  }
+  .news-label-wrap { display: none; }
   .news-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    pointer-events: auto;
+    position: static; width: 100%;
+    opacity: 1; transform: none; pointer-events: auto;
   }
+  .news-panel-edge { display: none; }
+  .news-panel-header { opacity: 1; transform: none; margin-bottom: 1.2rem; }
+  .news-cards-curved { padding: 0; perspective: none; }
+  .news-card { opacity: 1; transform: none; max-width: 100%; }
+  .news-card.curved-center,
+  .news-card.curved-center.visible { max-width: 100%; transform: none; }
+  .news-card.curved-edge,
+  .news-card.curved-edge.visible { max-width: 100%; transform: none; opacity: 1; }
 }
 </style>
 </head>
@@ -328,60 +612,13 @@ nav {
 </nav>
 
 <section class="hero" id="hero">
-  <div class="hero-portrait-wrap">
-    <img src="Main Image.png" alt="Faizan Mir" class="hero-portrait" id="portrait">
-  </div>
-  <h1 class="hero-name">FAIZAN MIR</h1>
-  <p class="hero-title">Founder & CEO, Nearhuman</p>
-  <p class="hero-tagline">Building the future — one idea at a time</p>
-  <div class="hero-right-hover-zone" aria-hidden="true"></div>
-  <div class="news-widget">
-    <p class="news-label">News</p>
-    <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
-      <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
-      <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
-    </a>
- main
-  </div>
-
-  <div class="news-widget" tabindex="0">
-    <p class="news-label">News</p>
-    <div class="news-panel">
-      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
-        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
-        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
-      </a>
+  <div class="hero-center">
+    <div class="hero-portrait-wrap">
+      <img src="Main Image.png" alt="Faizan Mir" class="hero-portrait" id="portrait">
     </div>
-  </div>
-
-  <div class="news-widget">
-    <p class="news-label">News</p>
-    <div class="news-panel">
-      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
-        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
-        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
-      </a>
-    </div>
-  </div>
-
-  <div class="news-widget">
-    <p class="news-label">News</p>
-    <div class="news-panel">
-      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
-        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
-        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
-      </a>
-    </div>
-  </div>
-
-  <div class="news-widget">
-    <p class="news-label">News</p>
-    <div class="news-panel">
-      <a class="news-card" href="https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" target="_blank" rel="noopener noreferrer">
-        <img class="news-image" src="https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors" alt="Preview image for Embattled Lanes of Kashmir: Self-Taught Inventors article">
-        <p class="news-headline">Embattled Lanes of Kashmir: Self-Taught Inventors</p>
-      </a>
-    </div>
+    <h1 class="hero-name">FAIZAN MIR</h1>
+    <p class="hero-title">Founder & CEO, Nearhuman</p>
+    <p class="hero-tagline">Building the future — one idea at a time</p>
   </div>
 
   <div class="hero-socials">
@@ -395,8 +632,78 @@ nav {
   </div>
 </section>
 
+<!-- ====== NEWS ZONE ====== -->
+<div class="news-zone" id="newsZone">
+  <!-- Horizontal News label — closer to center -->
+  <div class="news-label-wrap">
+    <div class="news-label-deco">
+      <div class="news-label-line"></div>
+      <div class="news-label-dot"></div>
+      <div class="news-label-line"></div>
+    </div>
+    <span class="news-label-text">News</span>
+    <div class="news-label-pulse"></div>
+  </div>
+
+  <!-- Panel with cards -->
+  <div class="news-panel">
+    <div class="news-panel-edge"></div>
+    <div class="news-panel-header">
+      <h2 class="news-panel-title">IN THE NEWS</h2>
+      <p class="news-panel-sub">Press coverage & features</p>
+    </div>
+    <div class="news-cards-curved" id="newsCards"></div>
+  </div>
+</div>
+
 <script>
-// Loader
+// ====== ONLY REAL ARTICLES ======
+const newsArticles = [
+  {
+    source: 'The Wire',
+    headline: 'Embattled Lanes of Kashmir: Self-Taught Inventors',
+    date: 'Sep 2018',
+    url: 'https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors',
+    image: 'https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors'
+  },
+  {
+    source: 'Free Press Kashmir',
+    headline: 'Meet the Two Kashmiri Geeks Who Break Things and Make Robots',
+    date: 'Sep 2018',
+    url: 'https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/amp/',
+    image: 'https://image.thum.io/get/width/900/https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/'
+  }
+];
+
+// ====== BUILD CARDS ======
+const cardsContainer = document.getElementById('newsCards');
+
+newsArticles.forEach((article, i) => {
+  const card = document.createElement('a');
+  card.className = 'news-card curved-center';
+  card.href = article.url;
+  card.target = '_blank';
+  card.rel = 'noopener noreferrer';
+  card.dataset.index = i;
+  card.innerHTML = `
+    <div class="news-card-img-wrap">
+      <img class="news-card-img" src="${article.image}" alt="${article.headline}" loading="lazy">
+    </div>
+    <div class="news-card-body">
+      <span class="news-card-source">${article.source}</span>
+      <p class="news-card-headline">${article.headline}</p>
+      <div class="news-card-footer">
+        <span class="news-card-date">${article.date}</span>
+        <div class="news-card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </div>
+      </div>
+    </div>
+  `;
+  cardsContainer.appendChild(card);
+});
+
+// ====== LOADER ======
 const loaderText = document.getElementById('loaderText');
 'FAIZAN MIR'.split('').forEach((ch, i) => {
   const s = document.createElement('span');
@@ -406,55 +713,104 @@ const loaderText = document.getElementById('loaderText');
 });
 setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200);
 
-// Cursor
+// ====== CURSOR ======
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX - 8 + 'px';
   cursor.style.top = e.clientY - 8 + 'px';
 });
-document.querySelectorAll('a').forEach(el => {
+document.querySelectorAll('a, button').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
 
-
-// News panel interaction
+// ====== NEWS HOVER ======
 const hero = document.getElementById('hero');
-const newsWidget = document.querySelector('.news-widget');
-if (hero && newsWidget) {
-  const openNews = () => {
-    hero.classList.add('news-active');
-    newsWidget.classList.add('news-open');
-  };
-  const closeNews = () => {
-    hero.classList.remove('news-active');
-    newsWidget.classList.remove('news-open');
-  };
+const newsZone = document.getElementById('newsZone');
+const allCards = cardsContainer.querySelectorAll('.news-card');
+let closeTimeout = null;
+let isOpen = false;
 
-  newsWidget.addEventListener('mouseenter', openNews);
-  newsWidget.addEventListener('mouseleave', closeNews);
-  newsWidget.addEventListener('focusin', openNews);
-  newsWidget.addEventListener('focusout', (event) => {
-    if (!newsWidget.contains(event.relatedTarget)) closeNews();
+function openNews() {
+  if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+  if (isOpen) return;
+  isOpen = true;
+
+  hero.classList.add('news-active');
+  newsZone.classList.add('active');
+
+  allCards.forEach((card, i) => {
+    card.classList.remove('visible');
+    setTimeout(() => card.classList.add('visible'), 140 + i * 100);
   });
 }
 
-// ====== PARALLAX PORTRAIT — subtle, hover-only ======
+function closeNews() {
+  if (!isOpen) return;
+  closeTimeout = setTimeout(() => {
+    isOpen = false;
+    allCards.forEach(card => card.classList.remove('visible'));
+    setTimeout(() => {
+      hero.classList.remove('news-active');
+      newsZone.classList.remove('active');
+    }, 150);
+  }, 150);
+}
+
+// The entire news-zone triggers hover — cards inside are clickable
+// because the panel sits at z-index: 5 above everything else in the zone
+newsZone.addEventListener('mouseenter', openNews);
+newsZone.addEventListener('mouseleave', closeNews);
+newsZone.addEventListener('focusin', openNews);
+newsZone.addEventListener('focusout', e => {
+  if (!newsZone.contains(e.relatedTarget)) closeNews();
+});
+
+// Also add hover cursor for dynamically created cards
+allCards.forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+// ====== DYNAMIC CURVE ON SCROLL (for 3+ articles) ======
+const scrollContainer = document.getElementById('newsCards');
+scrollContainer.addEventListener('scroll', () => {
+  const cards = scrollContainer.querySelectorAll('.news-card');
+  if (cards.length <= 2) return;
+
+  const containerRect = scrollContainer.getBoundingClientRect();
+  const containerCenter = containerRect.top + containerRect.height / 2;
+
+  cards.forEach(card => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.top + cardRect.height / 2;
+    const distFromCenter = Math.abs(cardCenter - containerCenter);
+    const maxDist = containerRect.height / 2;
+    const ratio = Math.min(distFromCenter / maxDist, 1);
+
+    const scale = 1.04 - ratio * 0.12;
+    const translateX = ratio * 16;
+    const rotateY = -ratio * 3;
+    const opacity = 1 - ratio * 0.3;
+
+    card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
+    card.style.opacity = opacity;
+  });
+});
+
+// ====== PARALLAX PORTRAIT ======
 const portrait = document.getElementById('portrait');
 const wrap = document.querySelector('.hero-portrait-wrap');
-const maxShift = 5; // px — very subtle
+const maxShift = 5;
 
 wrap.addEventListener('mousemove', e => {
   const rect = wrap.getBoundingClientRect();
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
-
   const ratioX = (e.clientX - cx) / (rect.width / 2);
   const ratioY = (e.clientY - cy) / (rect.height / 2);
-
   portrait.style.transform = `translate(${ratioX * maxShift}px, ${ratioY * maxShift}px)`;
 });
-
 wrap.addEventListener('mouseleave', () => {
   portrait.style.transform = 'translate(0px, 0px)';
 });
