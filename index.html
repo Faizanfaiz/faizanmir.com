@@ -85,7 +85,10 @@ nav {
   display: none; flex-direction: column; gap: 6px;
   cursor: pointer; z-index: 1001;
 }
-.menu-toggle span { width: 24px; height: 1px; background: var(--pure-white); }
+.menu-toggle span { width: 24px; height: 1px; background: var(--pure-white); transition: transform 0.3s ease, opacity 0.3s ease; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .hero {
   min-height: 100vh;
@@ -506,7 +509,12 @@ nav {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
+/* ====== MOBILE ====== */
 @media (max-width: 768px) {
+  /* Hide custom cursor on touch devices */
+  .cursor { display: none; }
+
+  /* Nav */
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
@@ -517,24 +525,130 @@ nav {
     gap: 2rem; z-index: 1000;
   }
   .nav-links.open a { font-size: 1.2rem; }
-  .hero-portrait-wrap { width: clamp(280px, 75vw, 400px); }
-  .hero-socials { gap: 1.5rem; flex-wrap: wrap; justify-content: center; width: 90%; }
-  .hero.news-active .hero-center { transform: none; filter: none; opacity: 1; }
-  .hero.news-active .hero-socials { transform: translateX(-50%); filter: none; opacity: 1; }
 
+  /* Hero — shrink to fit above news */
+  .hero {
+    min-height: auto;
+    padding: 6rem 1.5rem 2rem;
+  }
+  .hero-portrait-wrap {
+    width: clamp(200px, 55vw, 300px);
+  }
+  .hero-name {
+    font-size: clamp(2.8rem, 14vw, 5rem);
+    margin-top: -0.8rem;
+  }
+  .hero-title {
+    font-size: clamp(0.85rem, 3.5vw, 1.2rem);
+  }
+  .hero-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    margin-top: 1rem;
+  }
+
+  /* Disable hero shift on mobile */
+  .hero.news-active .hero-center {
+    transform: none; filter: none; opacity: 1;
+  }
+
+  /* Socials — inline below hero, not absolute */
+  .hero-socials {
+    position: relative;
+    bottom: auto; left: auto;
+    transform: none;
+    margin-top: 2rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .hero.news-active .hero-socials {
+    transform: none; filter: none; opacity: 1;
+  }
+  .hero-socials a {
+    font-size: 0.6rem;
+  }
+
+  /* News zone — flows below hero, always visible */
   .news-zone {
-    position: static; width: 100%; height: auto;
-    flex-direction: column; padding: 2rem 1.5rem 3rem;
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 2.5rem 1.2rem 4rem;
   }
   .news-label-wrap { display: none; }
+
   .news-panel {
-    position: static; width: 100%;
-    opacity: 1; transform: none; pointer-events: auto;
+    position: static;
+    width: 100%;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    justify-content: flex-start;
   }
   .news-panel-edge { display: none; }
-  .news-panel-header { opacity: 1; transform: none; margin-bottom: 1.2rem; }
-  .news-cards-curved { padding: 0; perspective: none; max-height: none; }
-  .news-card { opacity: 1; transform: none; max-width: 100%; }
+
+  .news-panel-header {
+    opacity: 1;
+    transform: none;
+    margin-bottom: 1.2rem;
+    text-align: left;
+    padding-left: 0.3rem;
+  }
+  .news-panel-title {
+    font-size: 1.2rem;
+  }
+
+  .news-cards-curved {
+    padding: 0;
+    perspective: none;
+    max-height: none;
+    overflow-y: visible;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .news-card {
+    opacity: 1 !important;
+    transform: none !important;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .news-card-img-wrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .news-card-body {
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+  .news-card-headline {
+    font-size: 0.82rem;
+  }
+  .news-card-source {
+    font-size: 0.48rem;
+  }
+  .news-card-date {
+    font-size: 0.48rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .hero {
+    padding: 5rem 1rem 1.5rem;
+  }
+  .hero-portrait-wrap {
+    width: clamp(180px, 60vw, 250px);
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 16vw, 4rem);
+  }
+  .news-zone {
+    padding: 2rem 1rem 3rem;
+  }
 }
 </style>
 </head>
@@ -555,7 +669,7 @@ nav {
     <li><a href="https://www.instagram.com/faizanfaiiz/" target="_blank">Instagram</a></li>
     <li><a href="https://www.scootrr.com" target="_blank">Scootrr</a></li>
   </ul>
-  <div class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+  <div class="menu-toggle">
     <span></span><span></span><span></span>
   </div>
 </nav>
@@ -617,21 +731,21 @@ const newsArticles = [
     headline: 'Medallion of Excellence — IndiaSkills National Robotics Competition',
     date: '2018',
     url: 'https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3',
-    image: 'https://image.thum.io/get/width/900/https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3'
+    image: 'Article2.jpg'
   },
   {
     source: 'Free Press Kashmir',
     headline: 'Meet the Two Kashmiri Geeks Who Break Things and Make Robots',
     date: 'Sep 2018',
     url: 'https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/amp/',
-    image: 'https://image.thum.io/get/width/900/https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/'
+    image: 'Article3.jpg'
   },
   {
     source: 'Kashmir Life',
     headline: 'J&K Qualifies for World Skills India National Competition',
     date: '2018',
     url: 'https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/',
-    image: 'https://image.thum.io/get/width/900/https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/'
+    image: 'Article4.jpg'
   }
 ];
 
@@ -706,14 +820,18 @@ setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200
 
 // ====== CURSOR ======
 const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX - 8 + 'px';
-  cursor.style.top = e.clientY - 8 + 'px';
-});
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
+const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+
+if (!isMobile) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX - 8 + 'px';
+    cursor.style.top = e.clientY - 8 + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
 
 // ====== NEWS HOVER ======
 const hero = document.getElementById('hero');
@@ -722,52 +840,75 @@ let allCards = cardsContainer.querySelectorAll('.news-card');
 let closeTimeout = null;
 let isOpen = false;
 
-function openNews() {
-  if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
-  if (isOpen) return;
-  isOpen = true;
+// On mobile: cards are always visible, no hover interaction
+if (isMobile) {
+  allCards.forEach(card => card.classList.add('visible'));
+} else {
+  function openNews() {
+    if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
+    if (isOpen) return;
+    isOpen = true;
 
-  hero.classList.add('news-active');
-  newsZone.classList.add('active');
+    hero.classList.add('news-active');
+    newsZone.classList.add('active');
 
-  allCards.forEach((card, i) => {
-    card.classList.remove('visible');
-    setTimeout(() => {
-      card.classList.add('visible');
-      if (i === allCards.length - 1) {
-        setTimeout(applyCurve, 100);
-      }
-    }, 140 + i * 100);
+    allCards.forEach((card, i) => {
+      card.classList.remove('visible');
+      setTimeout(() => {
+        card.classList.add('visible');
+        if (i === allCards.length - 1) {
+          setTimeout(applyCurve, 100);
+        }
+      }, 140 + i * 100);
+    });
+  }
+
+  function closeNews() {
+    if (!isOpen) return;
+    closeTimeout = setTimeout(() => {
+      isOpen = false;
+      allCards.forEach(card => {
+        card.classList.remove('visible');
+        card.style.transform = '';
+        card.style.opacity = '';
+      });
+      setTimeout(() => {
+        hero.classList.remove('news-active');
+        newsZone.classList.remove('active');
+      }, 150);
+    }, 150);
+  }
+
+  newsZone.addEventListener('mouseenter', openNews);
+  newsZone.addEventListener('mouseleave', closeNews);
+  newsZone.addEventListener('focusin', openNews);
+  newsZone.addEventListener('focusout', e => {
+    if (!newsZone.contains(e.relatedTarget)) closeNews();
+  });
+
+  allCards.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
 }
 
-function closeNews() {
-  if (!isOpen) return;
-  closeTimeout = setTimeout(() => {
-    isOpen = false;
-    allCards.forEach(card => {
-      card.classList.remove('visible');
-      card.style.transform = '';
-      card.style.opacity = '';
+// ====== MOBILE MENU TOGGLE ======
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinksEl = document.getElementById('navLinks');
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    navLinksEl.classList.toggle('open');
+    // Animate hamburger to X
+    menuToggle.classList.toggle('active');
+  });
+  // Close menu when clicking a link
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinksEl.classList.remove('open');
+      menuToggle.classList.remove('active');
     });
-    setTimeout(() => {
-      hero.classList.remove('news-active');
-      newsZone.classList.remove('active');
-    }, 150);
-  }, 150);
+  });
 }
-
-newsZone.addEventListener('mouseenter', openNews);
-newsZone.addEventListener('mouseleave', closeNews);
-newsZone.addEventListener('focusin', openNews);
-newsZone.addEventListener('focusout', e => {
-  if (!newsZone.contains(e.relatedTarget)) closeNews();
-});
-
-allCards.forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
 
 // ====== PARALLAX PORTRAIT ======
 const portrait = document.getElementById('portrait');
