@@ -24,7 +24,6 @@ body {
   overflow-x: hidden; cursor: default; min-height: 100vh;
 }
 
-/* ====== CURSOR ====== */
 .cursor {
   width: 16px; height: 16px; border: 2px solid var(--white);
   border-radius: 50%; position: fixed; pointer-events: none;
@@ -33,7 +32,6 @@ body {
 }
 .cursor.hover { transform: scale(3); opacity: 0.5; }
 
-/* ====== LOADER ====== */
 .loader {
   position: fixed; inset: 0; background: var(--black); z-index: 9999;
   display: flex; align-items: center; justify-content: center; flex-direction: column;
@@ -61,7 +59,6 @@ body {
 }
 @keyframes loadBar { to { width: 100%; } }
 
-/* ====== NAV ====== */
 nav {
   position: fixed; top: 0; width: 100%; z-index: 1000;
   padding: 1.5rem 3rem;
@@ -90,7 +87,6 @@ nav {
 }
 .menu-toggle span { width: 24px; height: 1px; background: var(--pure-white); }
 
-/* ====== HERO ====== */
 .hero {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
@@ -104,7 +100,6 @@ nav {
   pointer-events: none; z-index: 0;
 }
 
-/* Hero center — shifts left */
 .hero-center {
   display: flex; flex-direction: column; align-items: center;
   position: relative; z-index: 3;
@@ -118,7 +113,6 @@ nav {
   opacity: 0.55;
 }
 
-/* Portrait */
 .hero-portrait-wrap {
   position: relative; z-index: 2;
   opacity: 0; transform: scale(0.92);
@@ -157,7 +151,6 @@ nav {
   opacity: 0; animation: fadeIn 1s ease 3.3s forwards;
 }
 
-/* ====== SOCIAL ROW ====== */
 .hero-socials {
   position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
   display: flex; gap: 2.5rem; align-items: center;
@@ -198,7 +191,6 @@ nav {
   align-items: stretch;
 }
 
-/* ====== NEWS LABEL — horizontal, closer to center ====== */
 .news-label-wrap {
   position: absolute;
   right: clamp(60px, 8vw, 120px);
@@ -216,7 +208,6 @@ nav {
               visibility 0.4s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-/* FULLY DISAPPEAR when active */
 .news-zone.active .news-label-wrap {
   opacity: 0 !important;
   visibility: hidden;
@@ -229,12 +220,9 @@ nav {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--pure-white);
-  transition: text-shadow 0.3s ease;
 }
 .news-label-deco {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  display: flex; align-items: center; gap: 0.7rem;
 }
 .news-label-line {
   width: 28px; height: 1px;
@@ -243,8 +231,7 @@ nav {
 .news-label-dot {
   width: 5px; height: 5px;
   border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%;
-  position: relative;
+  border-radius: 50%; position: relative;
 }
 .news-label-dot::after {
   content: '';
@@ -275,7 +262,6 @@ nav {
   100% { top: 100%; }
 }
 
-/* ====== NEWS PANEL ====== */
 .news-panel {
   position: absolute;
   right: 0; top: 0; bottom: 0;
@@ -297,13 +283,13 @@ nav {
   pointer-events: auto;
 }
 
-/* Panel header */
 .news-panel-header {
   text-align: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.2rem;
   opacity: 0;
   transform: translateY(-12px);
   transition: opacity 0.5s ease 0.18s, transform 0.5s ease 0.18s;
+  flex-shrink: 0;
 }
 .news-zone.active .news-panel-header {
   opacity: 1;
@@ -323,14 +309,13 @@ nav {
   margin-top: 0.1rem;
 }
 
-/* Curved card container */
 .news-cards-curved {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 0 1.2rem;
-  max-height: 70vh;
+  gap: 16px;
+  padding: 0 1.2rem 1rem;
+  max-height: 74vh;
   overflow-y: auto;
   overflow-x: visible;
   scrollbar-width: thin;
@@ -341,7 +326,6 @@ nav {
 .news-cards-curved::-webkit-scrollbar-track { background: transparent; }
 .news-cards-curved::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
 
-/* Edge line */
 .news-panel-edge {
   position: absolute;
   left: 0; top: 12%; bottom: 12%;
@@ -370,7 +354,6 @@ nav {
   width: 100%;
   max-width: 340px;
   flex-shrink: 0;
-  /* ensure cards are clickable */
   cursor: pointer;
 
   background: linear-gradient(145deg,
@@ -388,15 +371,13 @@ nav {
               transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.3s ease,
               background 0.3s ease,
-              box-shadow 0.3s ease,
-              max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+              box-shadow 0.3s ease;
 }
 .news-card.visible {
   opacity: 1;
   transform: translateX(0) scale(1);
 }
 
-/* Top shine */
 .news-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
@@ -408,11 +389,9 @@ nav {
     rgba(255,255,255,0.2) 75%,
     transparent 100%
   );
-  z-index: 2;
-  pointer-events: none;
+  z-index: 2; pointer-events: none;
 }
 
-/* Reflection sweep */
 .news-card::after {
   content: '';
   position: absolute; top: -50%; left: -50%;
@@ -445,29 +424,6 @@ nav {
     inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-/* Curved classes */
-.news-card.curved-center {
-  max-width: 360px;
-}
-.news-card.curved-center.visible {
-  transform: translateX(0) scale(1.04);
-}
-.news-card.curved-center:hover {
-  transform: translateX(0) scale(1.06);
-}
-.news-card.curved-edge {
-  max-width: 310px;
-}
-.news-card.curved-edge.visible {
-  transform: translateX(12px) scale(0.94) rotateY(-2deg);
-  opacity: 0.75;
-}
-.news-card.curved-edge:hover {
-  transform: translateX(4px) scale(0.97) rotateY(-1deg);
-  opacity: 1;
-}
-
-/* Card image */
 .news-card-img-wrap {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -492,28 +448,27 @@ nav {
   pointer-events: none;
 }
 
-/* Card body */
 .news-card-body {
-  padding: 0.8rem 1rem 0.9rem;
+  padding: 0.7rem 0.9rem 0.8rem;
 }
 .news-card-source {
   font-size: 0.5rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--mid);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
   display: block;
 }
 .news-card-headline {
   color: var(--pure-white);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.4;
   font-weight: 400;
 }
 .news-card-footer {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 0.55rem;
-  padding-top: 0.5rem;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 .news-card-date {
@@ -543,7 +498,6 @@ nav {
   stroke: var(--pure-white);
 }
 
-/* Grain */
 .grain {
   position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -552,7 +506,6 @@ nav {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* ====== MOBILE ====== */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
@@ -580,12 +533,8 @@ nav {
   }
   .news-panel-edge { display: none; }
   .news-panel-header { opacity: 1; transform: none; margin-bottom: 1.2rem; }
-  .news-cards-curved { padding: 0; perspective: none; }
+  .news-cards-curved { padding: 0; perspective: none; max-height: none; }
   .news-card { opacity: 1; transform: none; max-width: 100%; }
-  .news-card.curved-center,
-  .news-card.curved-center.visible { max-width: 100%; transform: none; }
-  .news-card.curved-edge,
-  .news-card.curved-edge.visible { max-width: 100%; transform: none; opacity: 1; }
 }
 </style>
 </head>
@@ -632,9 +581,7 @@ nav {
   </div>
 </section>
 
-<!-- ====== NEWS ZONE ====== -->
 <div class="news-zone" id="newsZone">
-  <!-- Horizontal News label — closer to center -->
   <div class="news-label-wrap">
     <div class="news-label-deco">
       <div class="news-label-line"></div>
@@ -645,7 +592,6 @@ nav {
     <div class="news-label-pulse"></div>
   </div>
 
-  <!-- Panel with cards -->
   <div class="news-panel">
     <div class="news-panel-edge"></div>
     <div class="news-panel-header">
@@ -657,7 +603,7 @@ nav {
 </div>
 
 <script>
-// ====== ONLY REAL ARTICLES ======
+// ====== ARTICLES — IndiaSkills is now 2nd ======
 const newsArticles = [
   {
     source: 'The Wire',
@@ -667,11 +613,25 @@ const newsArticles = [
     image: 'https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors'
   },
   {
+    source: 'IndiaSkills — NSDC',
+    headline: 'Medallion of Excellence — IndiaSkills National Robotics Competition',
+    date: '2018',
+    url: 'https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3',
+    image: 'https://image.thum.io/get/width/900/https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3'
+  },
+  {
     source: 'Free Press Kashmir',
     headline: 'Meet the Two Kashmiri Geeks Who Break Things and Make Robots',
     date: 'Sep 2018',
     url: 'https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/amp/',
     image: 'https://image.thum.io/get/width/900/https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/'
+  },
+  {
+    source: 'Kashmir Life',
+    headline: 'J&K Qualifies for World Skills India National Competition',
+    date: '2018',
+    url: 'https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/',
+    image: 'https://image.thum.io/get/width/900/https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/'
   }
 ];
 
@@ -680,7 +640,7 @@ const cardsContainer = document.getElementById('newsCards');
 
 newsArticles.forEach((article, i) => {
   const card = document.createElement('a');
-  card.className = 'news-card curved-center';
+  card.className = 'news-card';
   card.href = article.url;
   card.target = '_blank';
   card.rel = 'noopener noreferrer';
@@ -702,6 +662,37 @@ newsArticles.forEach((article, i) => {
   `;
   cardsContainer.appendChild(card);
 });
+
+// ====== DYNAMIC CURVE ======
+const scrollContainer = document.getElementById('newsCards');
+
+function applyCurve() {
+  const cards = scrollContainer.querySelectorAll('.news-card');
+  if (cards.length < 3) return;
+
+  const containerRect = scrollContainer.getBoundingClientRect();
+  const containerCenter = containerRect.top + containerRect.height / 2;
+
+  cards.forEach(card => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.top + cardRect.height / 2;
+    const distFromCenter = Math.abs(cardCenter - containerCenter);
+    const maxDist = containerRect.height / 2;
+    const ratio = Math.min(distFromCenter / maxDist, 1);
+
+    const scale = 1.04 - ratio * 0.12;
+    const translateX = ratio * 14;
+    const rotateY = -ratio * 2.5;
+    const cardOpacity = 1 - ratio * 0.25;
+
+    if (card.classList.contains('visible')) {
+      card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
+      card.style.opacity = cardOpacity;
+    }
+  });
+}
+
+scrollContainer.addEventListener('scroll', applyCurve);
 
 // ====== LOADER ======
 const loaderText = document.getElementById('loaderText');
@@ -727,7 +718,7 @@ document.querySelectorAll('a, button').forEach(el => {
 // ====== NEWS HOVER ======
 const hero = document.getElementById('hero');
 const newsZone = document.getElementById('newsZone');
-const allCards = cardsContainer.querySelectorAll('.news-card');
+let allCards = cardsContainer.querySelectorAll('.news-card');
 let closeTimeout = null;
 let isOpen = false;
 
@@ -741,7 +732,12 @@ function openNews() {
 
   allCards.forEach((card, i) => {
     card.classList.remove('visible');
-    setTimeout(() => card.classList.add('visible'), 140 + i * 100);
+    setTimeout(() => {
+      card.classList.add('visible');
+      if (i === allCards.length - 1) {
+        setTimeout(applyCurve, 100);
+      }
+    }, 140 + i * 100);
   });
 }
 
@@ -749,7 +745,11 @@ function closeNews() {
   if (!isOpen) return;
   closeTimeout = setTimeout(() => {
     isOpen = false;
-    allCards.forEach(card => card.classList.remove('visible'));
+    allCards.forEach(card => {
+      card.classList.remove('visible');
+      card.style.transform = '';
+      card.style.opacity = '';
+    });
     setTimeout(() => {
       hero.classList.remove('news-active');
       newsZone.classList.remove('active');
@@ -757,8 +757,6 @@ function closeNews() {
   }, 150);
 }
 
-// The entire news-zone triggers hover — cards inside are clickable
-// because the panel sits at z-index: 5 above everything else in the zone
 newsZone.addEventListener('mouseenter', openNews);
 newsZone.addEventListener('mouseleave', closeNews);
 newsZone.addEventListener('focusin', openNews);
@@ -766,36 +764,9 @@ newsZone.addEventListener('focusout', e => {
   if (!newsZone.contains(e.relatedTarget)) closeNews();
 });
 
-// Also add hover cursor for dynamically created cards
 allCards.forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
-
-// ====== DYNAMIC CURVE ON SCROLL (for 3+ articles) ======
-const scrollContainer = document.getElementById('newsCards');
-scrollContainer.addEventListener('scroll', () => {
-  const cards = scrollContainer.querySelectorAll('.news-card');
-  if (cards.length <= 2) return;
-
-  const containerRect = scrollContainer.getBoundingClientRect();
-  const containerCenter = containerRect.top + containerRect.height / 2;
-
-  cards.forEach(card => {
-    const cardRect = card.getBoundingClientRect();
-    const cardCenter = cardRect.top + cardRect.height / 2;
-    const distFromCenter = Math.abs(cardCenter - containerCenter);
-    const maxDist = containerRect.height / 2;
-    const ratio = Math.min(distFromCenter / maxDist, 1);
-
-    const scale = 1.04 - ratio * 0.12;
-    const translateX = ratio * 16;
-    const rotateY = -ratio * 3;
-    const opacity = 1 - ratio * 0.3;
-
-    card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
-    card.style.opacity = opacity;
-  });
 });
 
 // ====== PARALLAX PORTRAIT ======
