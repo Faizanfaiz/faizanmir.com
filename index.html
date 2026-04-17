@@ -1,931 +1,1644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faizan Mir — Founder & CEO, Nearhuman</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --black: #000000;
-  --dark: #0a0a0a;
-  --grey: #333333;
-  --mid: #666666;
-  --light: #999999;
-  --white: #f0f0f0;
-  --pure-white: #ffffff;
-  --panel-width: min(420px, 40vw);
-}
-html { overflow-x: hidden; }
-body {
-  background: var(--black); color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  overflow-x: hidden; cursor: default; min-height: 100vh;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Faizan Mir is a Bristol-based founder and robotics engineer building across Nearhuman, prototyping, embedded systems, and product direction."
+  >
+  <title>Faizan Mir | Founder, Robotics Engineer, Builder</title>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg: #090a08;
+      --bg-soft: #10120f;
+      --surface: rgba(18, 22, 17, 0.82);
+      --surface-strong: rgba(24, 30, 23, 0.94);
+      --surface-elevated: rgba(28, 34, 27, 0.98);
+      --text: #f4efe5;
+      --muted: #b6ae9f;
+      --subtle: #857d70;
+      --line: rgba(244, 239, 229, 0.13);
+      --line-strong: rgba(244, 239, 229, 0.24);
+      --lime: #d8ff68;
+      --coral: #ff945f;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --content-width: min(1180px, calc(100% - 2rem));
+    }
 
-.cursor {
-  width: 16px; height: 16px; border: 2px solid var(--white);
-  border-radius: 50%; position: fixed; pointer-events: none;
-  z-index: 10001; mix-blend-mode: difference;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-.cursor.hover { transform: scale(3); opacity: 0.5; }
+    * {
+      box-sizing: border-box;
+    }
 
-.loader {
-  position: fixed; inset: 0; background: var(--black); z-index: 9999;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-.loader.hidden { opacity: 0; visibility: hidden; }
-.loader-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 6vw, 5rem);
-  letter-spacing: 0.3em; color: var(--white);
-}
-.loader-text span {
-  display: inline-block; animation: slideUp 0.6s ease forwards;
-  opacity: 0; transform: translateY(100%);
-}
-@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-.loader-bar {
-  width: 200px; height: 1px; background: var(--grey);
-  margin-top: 2rem; position: relative; overflow: hidden;
-}
-.loader-bar::after {
-  content: ''; position: absolute; left: 0; top: 0;
-  height: 100%; width: 0; background: var(--white);
-  animation: loadBar 2s ease forwards;
-}
-@keyframes loadBar { to { width: 100%; } }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+    }
 
-nav {
-  position: fixed; top: 0; width: 100%; z-index: 1000;
-  padding: 1.5rem 3rem;
-  display: flex; justify-content: space-between; align-items: center;
-  mix-blend-mode: difference;
-}
-.nav-logo {
-  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
-  letter-spacing: 0.15em; color: var(--pure-white); text-decoration: none;
-}
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  color: var(--pure-white); text-decoration: none;
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-  font-weight: 500; position: relative; padding-bottom: 2px;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0;
-  width: 0; height: 1px; background: var(--pure-white);
-  transition: width 0.3s ease;
-}
-.nav-links a:hover::after { width: 100%; }
-.menu-toggle {
-  display: none; flex-direction: column; gap: 6px;
-  cursor: pointer; z-index: 1001;
-}
-.menu-toggle span { width: 24px; height: 1px; background: var(--pure-white); transition: transform 0.3s ease, opacity 0.3s ease; }
-.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(216, 255, 104, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(255, 148, 95, 0.17), transparent 25%),
+        radial-gradient(circle at 72% 72%, rgba(216, 255, 104, 0.08), transparent 24%),
+        linear-gradient(180deg, #070807 0%, #0d100c 45%, #070807 100%);
+      overflow-x: hidden;
+    }
 
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute;
-  top: 46%; left: 50%; transform: translate(-50%, -50%);
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 65%);
-  pointer-events: none; z-index: 0;
-}
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
 
-.hero-center {
-  display: flex; flex-direction: column; align-items: center;
-  position: relative; z-index: 3;
-  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hero.news-active .hero-center {
-  transform: translateX(clamp(-180px, -16vw, -260px));
-  filter: blur(4px) brightness(0.65);
-  opacity: 0.55;
-}
+    body::before {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 110px 110px;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
+      opacity: 0.22;
+      z-index: -2;
+    }
 
-.hero-portrait-wrap {
-  position: relative; z-index: 2;
-  opacity: 0; transform: scale(0.92);
-  animation: fadeScale 1.2s ease 2.2s forwards;
-  overflow: hidden;
-  width: clamp(300px, 42vw, 520px);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-}
-.hero-portrait {
-  display: block; width: 115%; margin-left: -7.5%; margin-top: -4%;
-  height: auto; object-fit: contain;
-  filter: grayscale(100%) contrast(1.08) brightness(1.05);
-  will-change: transform;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-@keyframes fadeScale { to { opacity: 1; transform: scale(1); } }
+    body::after {
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 52%);
+      opacity: 0.35;
+      z-index: -1;
+    }
 
-.hero-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 13vw, 12rem);
-  letter-spacing: 0.04em; line-height: 0.88;
-  text-align: center; margin-top: -1.5rem;
-  opacity: 0; animation: fadeIn 1s ease 2.6s forwards;
-}
-.hero-title {
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  font-size: clamp(1rem, 2.5vw, 1.8rem);
-  color: var(--light); margin-top: 0.3rem;
-  opacity: 0; animation: fadeIn 1s ease 3s forwards;
-  letter-spacing: 0.05em;
-}
-.hero-tagline {
-  font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
-  color: var(--mid); margin-top: 1.5rem;
-  opacity: 0; animation: fadeIn 1s ease 3.3s forwards;
-}
+    a {
+      color: inherit;
+    }
 
-.hero-socials {
-  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 2.5rem; align-items: center;
-  opacity: 0; animation: fadeIn 1s ease 3.6s forwards; z-index: 3;
-  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hero.news-active .hero-socials {
-  transform: translateX(calc(-50% + clamp(-180px, -16vw, -260px)));
-  filter: blur(3px);
-  opacity: 0.35;
-}
-.hero-socials a {
-  color: var(--mid); text-decoration: none;
-  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-  transition: color 0.3s ease; position: relative; padding-bottom: 2px;
-}
-.hero-socials a::after {
-  content: ''; position: absolute; bottom: 0; left: 0;
-  width: 0; height: 1px; background: var(--white);
-  transition: width 0.3s ease;
-}
-.hero-socials a:hover { color: var(--white); }
-.hero-socials a:hover::after { width: 100%; }
-.hero-socials .sep {
-  width: 3px; height: 3px; border-radius: 50%;
-  background: var(--grey); flex-shrink: 0;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-/* ====== NEWS ZONE ====== */
-.news-zone {
-  position: fixed;
-  right: 0; top: 0; bottom: 0;
-  width: var(--panel-width);
-  z-index: 500;
-  display: flex;
-  align-items: stretch;
-}
+    .page-noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 10;
+    }
 
-.news-label-wrap {
-  position: absolute;
-  right: clamp(60px, 8vw, 120px);
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  opacity: 0;
-  animation: fadeIn 1s ease 3.6s forwards;
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              visibility 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.news-zone.active .news-label-wrap {
-  opacity: 0 !important;
-  visibility: hidden;
-  transform: translateY(-50%) translateX(30px);
-}
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0 0;
+    }
 
-.news-label-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--pure-white);
-}
-.news-label-deco {
-  display: flex; align-items: center; gap: 0.7rem;
-}
-.news-label-line {
-  width: 28px; height: 1px;
-  background: rgba(255,255,255,0.25);
-}
-.news-label-dot {
-  width: 5px; height: 5px;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%; position: relative;
-}
-.news-label-dot::after {
-  content: '';
-  position: absolute; inset: -4px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50%;
-  animation: pingDot 3s ease-in-out infinite;
-}
-@keyframes pingDot {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.8); opacity: 0; }
-}
-.news-label-pulse {
-  width: 1px; height: 30px;
-  background: rgba(255,255,255,0.15);
-  position: relative; overflow: hidden;
-}
-.news-label-pulse::after {
-  content: '';
-  position: absolute; top: -100%; left: 0;
-  width: 100%; height: 100%;
-  background: var(--pure-white);
-  animation: pulseDown 2.8s ease-in-out infinite;
-}
-@keyframes pulseDown {
-  0% { top: -100%; }
-  50% { top: 100%; }
-  100% { top: 100%; }
-}
+    .header-bar {
+      width: var(--content-width);
+      margin: 0 auto;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(10, 12, 10, 0.74);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+    }
 
-.news-panel {
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: translateX(50px);
-  pointer-events: none;
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 5;
-}
-.news-zone.active .news-panel {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+      min-width: 0;
+    }
 
-.news-panel-header {
-  text-align: center;
-  margin-bottom: 1.2rem;
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.5s ease 0.18s, transform 0.5s ease 0.18s;
-  flex-shrink: 0;
-}
-.news-zone.active .news-panel-header {
-  opacity: 1;
-  transform: translateY(0);
-}
-.news-panel-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.18em;
-  color: var(--pure-white);
-}
-.news-panel-sub {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: 0.8rem;
-  color: var(--light);
-  margin-top: 0.1rem;
-}
+    .brand-mark {
+      width: 0.95rem;
+      height: 0.95rem;
+      border-radius: 0.3rem;
+      background:
+        linear-gradient(135deg, var(--lime), var(--coral));
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 0 24px rgba(216, 255, 104, 0.3);
+      transform: rotate(12deg);
+      flex-shrink: 0;
+    }
 
-.news-cards-curved {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 0 1.2rem 1rem;
-  max-height: 74vh;
-  overflow-y: auto;
-  overflow-x: visible;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.1) transparent;
-  perspective: 900px;
-}
-.news-cards-curved::-webkit-scrollbar { width: 2px; }
-.news-cards-curved::-webkit-scrollbar-track { background: transparent; }
-.news-cards-curved::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
 
-.news-panel-edge {
-  position: absolute;
-  left: 0; top: 12%; bottom: 12%;
-  width: 1px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255,255,255,0.06) 25%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.06) 75%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.6s ease 0.25s;
-}
-.news-zone.active .news-panel-edge {
-  opacity: 1;
-}
+    .brand-copy strong {
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
 
-/* ====== GLASS CARD ====== */
-.news-card {
-  display: block;
-  text-decoration: none;
-  border-radius: 14px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  max-width: 340px;
-  flex-shrink: 0;
-  cursor: pointer;
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-  background: linear-gradient(145deg,
-    rgba(255,255,255,0.07) 0%,
-    rgba(255,255,255,0.015) 50%,
-    rgba(255,255,255,0.05) 100%
-  );
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
 
-  opacity: 0;
-  transform: translateX(35px) scale(0.94);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease,
-              background 0.3s ease,
-              box-shadow 0.3s ease;
-}
-.news-card.visible {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
+    .site-nav a {
+      text-decoration: none;
+      font-size: 0.77rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
 
-.news-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,0.2) 25%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0.2) 75%,
-    transparent 100%
-  );
-  z-index: 2; pointer-events: none;
-}
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: var(--text);
+    }
 
-.news-card::after {
-  content: '';
-  position: absolute; top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: linear-gradient(45deg,
-    transparent 42%,
-    rgba(255,255,255,0.025) 46%,
-    rgba(255,255,255,0.05) 50%,
-    rgba(255,255,255,0.025) 54%,
-    transparent 58%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 2; pointer-events: none;
-}
-.news-card:hover::after {
-  transform: translateX(25%);
-}
+    .site-nav .nav-cta {
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 255, 104, 0.35);
+      color: var(--text);
+      background: rgba(216, 255, 104, 0.08);
+    }
 
-.news-card:hover {
-  border-color: rgba(255,255,255,0.28);
-  background: linear-gradient(145deg,
-    rgba(255,255,255,0.11) 0%,
-    rgba(255,255,255,0.035) 50%,
-    rgba(255,255,255,0.09) 100%
-  );
-  box-shadow:
-    0 8px 28px rgba(0,0,0,0.35),
-    0 0 50px rgba(255,255,255,0.02),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-}
+    .menu-button {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
 
-.news-card-img-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  position: relative;
-}
-.news-card-img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  filter: grayscale(25%) contrast(1.05);
-  transition: filter 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.news-card:hover .news-card-img {
-  filter: grayscale(0%) contrast(1.1);
-  transform: scale(1.05);
-}
-.news-card-img-wrap::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 50px;
-  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-  pointer-events: none;
-}
+    .menu-button span {
+      display: block;
+      width: 1.1rem;
+      height: 1px;
+      background: currentColor;
+      position: relative;
+      transition: transform 0.25s ease;
+    }
 
-.news-card-body {
-  padding: 0.7rem 0.9rem 0.8rem;
-}
-.news-card-source {
-  font-size: 0.5rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 0.25rem;
-  display: block;
-}
-.news-card-headline {
-  color: var(--pure-white);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  font-weight: 400;
-}
-.news-card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-top: 0.45rem;
-  padding-top: 0.45rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.news-card-date {
-  font-size: 0.5rem;
-  letter-spacing: 0.12em;
-  color: var(--mid);
-  text-transform: uppercase;
-}
-.news-card-arrow {
-  width: 20px; height: 20px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-}
-.news-card:hover .news-card-arrow {
-  border-color: rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.06);
-  transform: translate(1px, -1px);
-}
-.news-card-arrow svg {
-  width: 9px; height: 9px;
-  stroke: var(--light); fill: none; stroke-width: 2;
-  transition: stroke 0.3s ease;
-}
-.news-card:hover .news-card-arrow svg {
-  stroke: var(--pure-white);
-}
+    .menu-button span::before,
+    .menu-button span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transition: transform 0.25s ease, top 0.25s ease, bottom 0.25s ease;
+    }
 
-.grain {
-  position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-}
+    .menu-button span::before {
+      top: -0.38rem;
+    }
 
-@keyframes fadeIn { to { opacity: 1; } }
+    .menu-button span::after {
+      bottom: -0.38rem;
+    }
 
-/* ====== MOBILE ====== */
-@media (max-width: 768px) {
-  /* Hide custom cursor on touch devices */
-  .cursor { display: none; }
+    .menu-button[aria-expanded="true"] span {
+      transform: rotate(45deg);
+    }
 
-  /* Nav */
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  .menu-toggle { display: flex; }
-  .nav-links.open {
-    display: flex; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.97);
-    flex-direction: column; align-items: center; justify-content: center;
-    gap: 2rem; z-index: 1000;
-  }
-  .nav-links.open a { font-size: 1.2rem; }
+    .menu-button[aria-expanded="true"] span::before {
+      top: 0;
+      transform: rotate(90deg);
+    }
 
-  /* Hero — shrink to fit above news */
-  .hero {
-    min-height: auto;
-    padding: 6rem 1.5rem 2rem;
-  }
-  .hero-portrait-wrap {
-    width: clamp(200px, 55vw, 300px);
-  }
-  .hero-name {
-    font-size: clamp(2.8rem, 14vw, 5rem);
-    margin-top: -0.8rem;
-  }
-  .hero-title {
-    font-size: clamp(0.85rem, 3.5vw, 1.2rem);
-  }
-  .hero-tagline {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    margin-top: 1rem;
-  }
+    .menu-button[aria-expanded="true"] span::after {
+      bottom: 0;
+      transform: rotate(90deg);
+    }
 
-  /* Disable hero shift on mobile */
-  .hero.news-active .hero-center {
-    transform: none; filter: none; opacity: 1;
-  }
+    main {
+      width: var(--content-width);
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
 
-  /* Socials — inline below hero, not absolute */
-  .hero-socials {
-    position: relative;
-    bottom: auto; left: auto;
-    transform: none;
-    margin-top: 2rem;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-  .hero.news-active .hero-socials {
-    transform: none; filter: none; opacity: 1;
-  }
-  .hero-socials a {
-    font-size: 0.6rem;
-  }
+    .hero {
+      min-height: calc(100vh - 6rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      padding: clamp(2rem, 5vw, 4rem) 0 3rem;
+      position: relative;
+    }
 
-  /* News zone — flows below hero, always visible */
-  .news-zone {
-    position: static;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    padding: 2.5rem 1.2rem 4rem;
-  }
-  .news-label-wrap { display: none; }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
 
-  .news-panel {
-    position: static;
-    width: 100%;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    justify-content: flex-start;
-  }
-  .news-panel-edge { display: none; }
+    .eyebrow,
+    .section-kicker {
+      margin: 0 0 1rem;
+      color: var(--lime);
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
 
-  .news-panel-header {
-    opacity: 1;
-    transform: none;
-    margin-bottom: 1.2rem;
-    text-align: left;
-    padding-left: 0.3rem;
-  }
-  .news-panel-title {
-    font-size: 1.2rem;
-  }
+    .hero-overline {
+      margin: 0 0 1rem;
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      color: var(--muted);
+    }
 
-  .news-cards-curved {
-    padding: 0;
-    perspective: none;
-    max-height: none;
-    overflow-y: visible;
-    gap: 14px;
-    align-items: stretch;
-  }
+    .hero h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
 
-  .news-card {
-    opacity: 1 !important;
-    transform: none !important;
-    max-width: 100%;
-    border-radius: 12px;
-  }
+    .hero-lead {
+      max-width: 58ch;
+      margin: 1.5rem 0 0;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
 
-  .news-card-img-wrap {
-    aspect-ratio: 16 / 9;
-  }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
 
-  .news-card-body {
-    padding: 0.7rem 0.85rem 0.75rem;
-  }
-  .news-card-headline {
-    font-size: 0.82rem;
-  }
-  .news-card-source {
-    font-size: 0.48rem;
-  }
-  .news-card-date {
-    font-size: 0.48rem;
-  }
-}
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 3.3rem;
+      padding: 0.9rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease,
+        box-shadow 0.22s ease;
+    }
 
-/* Small phones */
-@media (max-width: 400px) {
-  .hero {
-    padding: 5rem 1rem 1.5rem;
-  }
-  .hero-portrait-wrap {
-    width: clamp(180px, 60vw, 250px);
-  }
-  .hero-name {
-    font-size: clamp(2.2rem, 16vw, 4rem);
-  }
-  .news-zone {
-    padding: 2rem 1rem 3rem;
-  }
-}
-</style>
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #11140e;
+      background: linear-gradient(135deg, var(--lime), #f6ffb9);
+      box-shadow: 0 18px 40px rgba(216, 255, 104, 0.18);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .hero-stats {
+      margin-top: 2.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .stat-item {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .stat-item span {
+      display: block;
+      margin-bottom: 0.55rem;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .stat-item p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-orbit {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(8px);
+    }
+
+    .visual-orbit.one {
+      top: 6%;
+      left: 12%;
+      width: 11rem;
+      height: 11rem;
+      background: radial-gradient(circle, rgba(216, 255, 104, 0.26), transparent 65%);
+    }
+
+    .visual-orbit.two {
+      right: 10%;
+      bottom: 10%;
+      width: 14rem;
+      height: 14rem;
+      background: radial-gradient(circle, rgba(255, 148, 95, 0.24), transparent 62%);
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: min(100%, 480px);
+      min-height: 620px;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 1px solid rgba(244, 239, 229, 0.15);
+      background:
+        radial-gradient(circle at top, rgba(216, 255, 104, 0.18), transparent 36%),
+        linear-gradient(180deg, rgba(255, 148, 95, 0.1), rgba(14, 18, 14, 0.92) 28%, rgba(9, 10, 8, 1) 100%);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(244, 239, 229, 0.08);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+      z-index: 0;
+    }
+
+    .portrait-frame::after {
+      content: "";
+      position: absolute;
+      inset: auto 8% 4.5%;
+      height: 22%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 255, 104, 0.2), transparent 68%);
+      filter: blur(24px);
+      z-index: 0;
+    }
+
+    .hero-portrait {
+      position: absolute;
+      inset: auto 0 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.05);
+      z-index: 1;
+    }
+
+    .floating-note {
+      position: absolute;
+      max-width: 245px;
+      padding: 1rem 1.1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(244, 239, 229, 0.14);
+      background: rgba(14, 17, 14, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+      z-index: 2;
+    }
+
+    .floating-note strong {
+      display: block;
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .floating-note span {
+      display: block;
+      margin-top: 0.4rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .note-top {
+      top: 12%;
+      left: 0;
+      transform: translateX(-14%);
+    }
+
+    .note-bottom {
+      right: 0;
+      bottom: 10%;
+      transform: translateX(12%);
+    }
+
+    .signal-strip {
+      overflow: hidden;
+      margin: 0;
+      border-block: 1px solid rgba(244, 239, 229, 0.08);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .signal-track {
+      display: flex;
+      gap: 2.2rem;
+      padding: 0.95rem 0;
+      width: max-content;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      animation: marquee 22s linear infinite;
+    }
+
+    .section {
+      padding: clamp(3.5rem, 6vw, 6rem) 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.75rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 42ch;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .story-copy {
+      padding: clamp(1.5rem, 3vw, 2rem);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+      min-height: 100%;
+    }
+
+    .story-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .story-copy p + p {
+      margin-top: 1rem;
+    }
+
+    .story-panels {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .story-panel {
+      padding: 1.4rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .panel-label {
+      display: block;
+      margin-bottom: 0.7rem;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .story-panel h3 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    .story-panel p {
+      margin: 0.75rem 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .story-panel a,
+    .focus-card a,
+    .milestone a,
+    .press-card .press-link,
+    .connect-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .story-panel a::after,
+    .focus-card a::after,
+    .milestone a::after,
+    .press-card .press-link::after,
+    .connect-links a::after {
+      content: "->";
+      color: var(--lime);
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .focus-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.008)),
+        rgba(12, 16, 12, 0.82);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focus-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lime), transparent 70%);
+      opacity: 0.8;
+    }
+
+    .focus-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: rgba(216, 255, 104, 0.12);
+      color: var(--lime);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .focus-card h3 {
+      margin: 1rem 0 0;
+      font-family: "Syne", sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .focus-card p {
+      margin: 0.8rem 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .milestone-list {
+      margin-top: 2rem;
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .milestone {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.25rem 1.4rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .milestone-year {
+      color: var(--coral);
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .milestone h3 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .milestone p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .press-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+      overflow: hidden;
+      text-decoration: none;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+    }
+
+    .press-card:hover,
+    .press-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.24);
+    }
+
+    .press-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.05fr);
+    }
+
+    .press-media {
+      position: relative;
+      min-height: 240px;
+      overflow: hidden;
+      background: #0d100c;
+    }
+
+    .press-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.04);
+    }
+
+    .press-placeholder {
+      min-height: 100%;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background:
+        radial-gradient(circle at top left, rgba(216, 255, 104, 0.25), transparent 42%),
+        linear-gradient(145deg, rgba(255, 148, 95, 0.18), rgba(8, 10, 8, 0.96));
+    }
+
+    .press-placeholder span {
+      color: rgba(244, 239, 229, 0.75);
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .press-placeholder strong {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .press-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 1.4rem;
+    }
+
+    .press-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .press-card h3 {
+      margin: 1rem 0 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .press-card p {
+      margin: 0.85rem 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .press-card .press-link {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+
+    .connect-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.5rem;
+      padding: clamp(1.6rem, 3vw, 2.2rem);
+      border-radius: 36px;
+      border: 1px solid rgba(244, 239, 229, 0.14);
+      background:
+        radial-gradient(circle at top right, rgba(216, 255, 104, 0.18), transparent 28%),
+        linear-gradient(145deg, rgba(255, 148, 95, 0.08), rgba(15, 18, 14, 0.96));
+      box-shadow: var(--shadow);
+    }
+
+    .connect-card h2 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .connect-card p {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 48ch;
+    }
+
+    .connect-links {
+      display: grid;
+      gap: 0.9rem;
+      align-content: center;
+    }
+
+    .connect-link-card {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .connect-link-card span {
+      display: block;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .connect-link-card strong {
+      display: block;
+      margin-top: 0.45rem;
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .site-footer {
+      width: var(--content-width);
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(244, 239, 229, 0.08);
+      color: var(--subtle);
+      font-size: 0.82rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition:
+        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 2rem;
+      }
+
+      .hero h1 {
+        max-width: 12ch;
+      }
+
+      .hero-copy {
+        order: 2;
+      }
+
+      .hero-visual {
+        order: 1;
+        min-height: 560px;
+      }
+
+      .note-top {
+        left: 1rem;
+        transform: none;
+      }
+
+      .note-bottom {
+        right: 1rem;
+        transform: none;
+      }
+
+      .section-heading,
+      .story-grid,
+      .connect-card {
+        grid-template-columns: 1fr;
+      }
+
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .press-card.featured {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .header-bar {
+        border-radius: 28px;
+      }
+
+      .menu-button {
+        display: inline-flex;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.45rem;
+        padding: 0.8rem;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: rgba(9, 11, 9, 0.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s ease;
+      }
+
+      .site-nav a {
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .site-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .hero-stats,
+      .press-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .milestone {
+        grid-template-columns: 1fr;
+      }
+
+      .milestone-year {
+        margin-bottom: 0.35rem;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --content-width: min(100% - 1.25rem, 1180px);
+      }
+
+      .site-header {
+        padding-top: 0.7rem;
+      }
+
+      .header-bar {
+        padding: 0.7rem 0.8rem;
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      main {
+        padding-top: 1.2rem;
+      }
+
+      .hero {
+        gap: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 15vw, 4.5rem);
+      }
+
+      .hero-lead {
+        font-size: 0.98rem;
+      }
+
+      .hero-visual {
+        min-height: 460px;
+      }
+
+      .portrait-frame {
+        min-height: 460px;
+        border-radius: 30px;
+      }
+
+      .floating-note {
+        position: static;
+        max-width: none;
+      }
+
+      .hero-visual {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .visual-orbit {
+        display: none;
+      }
+
+      .section-heading h2,
+      .connect-card h2 {
+        font-size: clamp(1.8rem, 10vw, 3rem);
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
-<body>
-<div class="grain"></div>
-<div class="cursor" id="cursor"></div>
+<body id="top">
+  <div class="page-noise" aria-hidden="true"></div>
 
-<div class="loader" id="loader">
-  <div class="loader-text" id="loaderText"></div>
-  <div class="loader-bar"></div>
-</div>
+  <header class="site-header">
+    <div class="header-bar">
+      <a class="brand" href="#top" aria-label="Go to top of page">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy">
+          <strong>Faizan Mir</strong>
+          <span>Founder / Robotics Engineer</span>
+        </span>
+      </a>
 
-<nav>
-  <a href="#" class="nav-logo">FAIZAN MIR</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="https://www.linkedin.com/in/faizanfaiiz/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://www.linkedin.com/company/nearhuman/" target="_blank">Nearhuman</a></li>
-    <li><a href="https://www.instagram.com/faizanfaiiz/" target="_blank">Instagram</a></li>
-    <li><a href="https://www.scootrr.com" target="_blank">Scootrr</a></li>
-  </ul>
-  <div class="menu-toggle">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="siteNav"
+        aria-label="Toggle navigation"
+      >
+        <span aria-hidden="true"></span>
+      </button>
 
-<section class="hero" id="hero">
-  <div class="hero-center">
-    <div class="hero-portrait-wrap">
-      <img src="Main Image.png" alt="Faizan Mir" class="hero-portrait" id="portrait">
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <a href="#story">Story</a>
+        <a href="#focus">Focus</a>
+        <a href="#press">Press</a>
+        <a href="#connect">Connect</a>
+        <a
+          class="nav-cta"
+          href="https://www.linkedin.com/in/faizanfaiiz/"
+          target="_blank"
+          rel="noreferrer"
+        >LinkedIn</a>
+      </nav>
     </div>
-    <h1 class="hero-name">FAIZAN MIR</h1>
-    <p class="hero-title">Founder & CEO, Nearhuman</p>
-    <p class="hero-tagline">Building the future — one idea at a time</p>
-  </div>
+  </header>
 
-  <div class="hero-socials">
-    <a href="https://www.linkedin.com/in/faizanfaiiz/" target="_blank">LinkedIn</a>
-    <div class="sep"></div>
-    <a href="https://www.linkedin.com/company/nearhuman/" target="_blank">Nearhuman</a>
-    <div class="sep"></div>
-    <a href="https://www.instagram.com/faizanfaiiz/" target="_blank">Instagram</a>
-    <div class="sep"></div>
-    <a href="https://www.scootrr.com" target="_blank">Scootrr</a>
-  </div>
-</section>
+  <main>
+    <section class="hero reveal">
+      <div class="hero-copy">
+        <p class="eyebrow">Bristol, UK / founder-led engineering / robotics and product direction</p>
+        <p class="hero-overline">Founder &amp; CEO, Nearhuman</p>
+        <h1>Faizan Mir turns ambitious ideas into products with engineering depth.</h1>
+        <p class="hero-lead">
+          Founder, robotics engineer, and builder working across hardware, embedded systems,
+          rapid prototyping, and the founder decisions that move a concept from rough sketch to
+          something real.
+        </p>
 
-<div class="news-zone" id="newsZone">
-  <div class="news-label-wrap">
-    <div class="news-label-deco">
-      <div class="news-label-line"></div>
-      <div class="news-label-dot"></div>
-      <div class="news-label-line"></div>
-    </div>
-    <span class="news-label-text">News</span>
-    <div class="news-label-pulse"></div>
-  </div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#press">View Press</a>
+          <a
+            class="button button-secondary"
+            href="https://www.linkedin.com/company/nearhuman/"
+            target="_blank"
+            rel="noreferrer"
+          >Visit Nearhuman</a>
+        </div>
 
-  <div class="news-panel">
-    <div class="news-panel-edge"></div>
-    <div class="news-panel-header">
-      <h2 class="news-panel-title">IN THE NEWS</h2>
-      <p class="news-panel-sub">Press coverage & features</p>
-    </div>
-    <div class="news-cards-curved" id="newsCards"></div>
-  </div>
-</div>
-
-<script>
-// ====== ARTICLES — IndiaSkills is now 2nd ======
-const newsArticles = [
-  {
-    source: 'The Wire',
-    headline: 'Embattled Lanes of Kashmir: Self-Taught Inventors',
-    date: 'Sep 2018',
-    url: 'https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors',
-    image: 'https://image.thum.io/get/width/900/https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors'
-  },
-  {
-    source: 'IndiaSkills — NSDC',
-    headline: 'Medallion of Excellence — IndiaSkills National Robotics Competition',
-    date: '2018',
-    url: 'https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3',
-    image: 'Article2.jpg'
-  },
-  {
-    source: 'Free Press Kashmir',
-    headline: 'Meet the Two Kashmiri Geeks Who Break Things and Make Robots',
-    date: 'Sep 2018',
-    url: 'https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/amp/',
-    image: 'Article3.jpg'
-  },
-  {
-    source: 'Kashmir Life',
-    headline: 'J&K Qualifies for World Skills India National Competition',
-    date: '2018',
-    url: 'https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/',
-    image: 'Article4.jpg'
-  }
-];
-
-// ====== BUILD CARDS ======
-const cardsContainer = document.getElementById('newsCards');
-
-newsArticles.forEach((article, i) => {
-  const card = document.createElement('a');
-  card.className = 'news-card';
-  card.href = article.url;
-  card.target = '_blank';
-  card.rel = 'noopener noreferrer';
-  card.dataset.index = i;
-  card.innerHTML = `
-    <div class="news-card-img-wrap">
-      <img class="news-card-img" src="${article.image}" alt="${article.headline}" loading="lazy">
-    </div>
-    <div class="news-card-body">
-      <span class="news-card-source">${article.source}</span>
-      <p class="news-card-headline">${article.headline}</p>
-      <div class="news-card-footer">
-        <span class="news-card-date">${article.date}</span>
-        <div class="news-card-arrow">
-          <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        <div class="hero-stats">
+          <article class="stat-item">
+            <span>Current role</span>
+            <strong>Founder and CEO</strong>
+            <p>Building Nearhuman with an engineering-first point of view.</p>
+          </article>
+          <article class="stat-item">
+            <span>Operating lens</span>
+            <strong>Robotics to product</strong>
+            <p>Hands-on execution across prototyping, embedded systems, and shipping.</p>
+          </article>
+          <article class="stat-item">
+            <span>Public proof</span>
+            <strong>Press and recognition</strong>
+            <p>Featured in regional and national coverage, including robotics competition honors.</p>
+          </article>
         </div>
       </div>
+
+      <div class="hero-visual reveal">
+        <div class="visual-orbit one" aria-hidden="true"></div>
+        <div class="visual-orbit two" aria-hidden="true"></div>
+
+        <div class="portrait-frame">
+          <img
+            src="Main Image.png"
+            alt="Portrait of Faizan Mir"
+            class="hero-portrait"
+          >
+        </div>
+
+        <div class="floating-note note-top">
+          <strong>Nearhuman</strong>
+          <span>Founder-led product building with technical credibility at the center.</span>
+        </div>
+
+        <div class="floating-note note-bottom">
+          <strong>Core strengths</strong>
+          <span>Robotics, embedded systems, rapid prototyping, and translating ideas into execution.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="signal-strip" aria-hidden="true">
+      <div class="signal-track">
+        <span>Founder mode</span>
+        <span>Robotics systems</span>
+        <span>Embedded engineering</span>
+        <span>Rapid prototyping</span>
+        <span>Product direction</span>
+        <span>Nearhuman</span>
+        <span>Founder mode</span>
+        <span>Robotics systems</span>
+        <span>Embedded engineering</span>
+        <span>Rapid prototyping</span>
+        <span>Product direction</span>
+        <span>Nearhuman</span>
+      </div>
     </div>
-  `;
-  cardsContainer.appendChild(card);
-});
 
-// ====== DYNAMIC CURVE ======
-const scrollContainer = document.getElementById('newsCards');
+    <section class="section reveal" id="story">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Story</p>
+          <h2>Founder instinct, engineering rigor, and a profile with range.</h2>
+        </div>
+        <p>
+          Faizan's work lives where technical depth and momentum meet: founder-led product building,
+          hands-on engineering, and external signals that show the work lands beyond the workshop.
+        </p>
+      </div>
 
-function applyCurve() {
-  const cards = scrollContainer.querySelectorAll('.news-card');
-  if (cards.length < 3) return;
+      <div class="story-grid">
+        <div class="story-copy">
+          <p>
+            Faizan Mir has built his profile around doing the work, not decorating it. That creates a
+            useful tension: founder energy on one side, engineering discipline on the other.
+          </p>
+          <p>
+            That mix is what gives the profile its shape. Visitors should be able to read the current role
+            quickly, then understand the technical range, ventures, and press that sit behind it.
+          </p>
+        </div>
 
-  const containerRect = scrollContainer.getBoundingClientRect();
-  const containerCenter = containerRect.top + containerRect.height / 2;
+        <div class="story-panels">
+          <article class="story-panel">
+            <span class="panel-label">Current platform</span>
+            <h3>Nearhuman</h3>
+            <p>
+              Nearhuman captures the founder side of the story: direction-setting, decision-making, and
+              shaping product ideas as they become real.
+            </p>
+            <a
+              href="https://www.linkedin.com/company/nearhuman/"
+              target="_blank"
+              rel="noreferrer"
+            >Explore company</a>
+          </article>
 
-  cards.forEach(card => {
-    const cardRect = card.getBoundingClientRect();
-    const cardCenter = cardRect.top + cardRect.height / 2;
-    const distFromCenter = Math.abs(cardCenter - containerCenter);
-    const maxDist = containerRect.height / 2;
-    const ratio = Math.min(distFromCenter / maxDist, 1);
+          <article class="story-panel">
+            <span class="panel-label">Engineering base</span>
+            <h3>Build first, explain second</h3>
+            <p>
+              Robotics, prototyping, electronics, and embedded systems form the through-line - the practical
+              base behind the founder narrative.
+            </p>
+          </article>
 
-    const scale = 1.04 - ratio * 0.12;
-    const translateX = ratio * 14;
-    const rotateY = -ratio * 2.5;
-    const cardOpacity = 1 - ratio * 0.25;
+          <article class="story-panel">
+            <span class="panel-label">Selected venture</span>
+            <h3>Scootrr</h3>
+            <p>
+              Scootrr adds another proof point: a venture connection that shows range across product thinking
+              and real-world execution.
+            </p>
+            <a
+              href="https://www.scootrr.com"
+              target="_blank"
+              rel="noreferrer"
+            >Visit Scootrr</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    if (card.classList.contains('visible')) {
-      card.style.transform = `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`;
-      card.style.opacity = cardOpacity;
-    }
-  });
-}
+    <section class="section reveal" id="focus">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Focus</p>
+          <h2>Three modes of work, made visible.</h2>
+        </div>
+        <p>
+          Faizan operates in three connected modes: founder shaping direction, engineer delivering technically,
+          and public-facing builder with real signals behind the narrative.
+        </p>
+      </div>
 
-scrollContainer.addEventListener('scroll', applyCurve);
+      <div class="focus-grid">
+        <article class="focus-card">
+          <span class="focus-index">01</span>
+          <h3>Founder mode</h3>
+          <p>
+            Defining product direction, making calls early, and pushing ideas into something people can actually
+            see, test, or believe in.
+          </p>
+          <a
+            href="https://www.linkedin.com/company/nearhuman/"
+            target="_blank"
+            rel="noreferrer"
+          >Nearhuman</a>
+        </article>
 
-// ====== LOADER ======
-const loaderText = document.getElementById('loaderText');
-'FAIZAN MIR'.split('').forEach((ch, i) => {
-  const s = document.createElement('span');
-  s.textContent = ch === ' ' ? '\u00A0' : ch;
-  s.style.animationDelay = `${i * 0.07}s`;
-  loaderText.appendChild(s);
-});
-setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2200);
+        <article class="focus-card">
+          <span class="focus-index">02</span>
+          <h3>Engineering mode</h3>
+          <p>
+            Working across robotics, embedded systems, electronics, and prototypes where progress depends on
+            practical execution rather than presentation alone.
+          </p>
+          <a
+            href="https://www.linkedin.com/in/faizanfaiiz/"
+            target="_blank"
+            rel="noreferrer"
+          >LinkedIn profile</a>
+        </article>
 
-// ====== CURSOR ======
-const cursor = document.getElementById('cursor');
-const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+        <article class="focus-card">
+          <span class="focus-index">03</span>
+          <h3>Public signal</h3>
+          <p>
+            Press coverage and competition recognition give the profile outside validation, not just
+            self-description.
+          </p>
+          <a href="#press">View press</a>
+        </article>
+      </div>
 
-if (!isMobile) {
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX - 8 + 'px';
-    cursor.style.top = e.clientY - 8 + 'px';
-  });
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-}
+      <div class="milestone-list">
+        <article class="milestone">
+          <div class="milestone-year">Now</div>
+          <div>
+            <h3>Founder and CEO, Nearhuman</h3>
+            <p>
+              The current role anchors the story, with the rest of the profile reinforcing it through ventures,
+              technical breadth, and public proof.
+            </p>
+          </div>
+        </article>
 
-// ====== NEWS HOVER ======
-const hero = document.getElementById('hero');
-const newsZone = document.getElementById('newsZone');
-let allCards = cardsContainer.querySelectorAll('.news-card');
-let closeTimeout = null;
-let isOpen = false;
+        <article class="milestone">
+          <div class="milestone-year">2018</div>
+          <div>
+            <h3>IndiaSkills National Robotics Competition</h3>
+            <p>
+              Recognized with a Medallion of Excellence, giving the profile a concrete competitive milestone
+              tied directly to robotics.
+            </p>
+          </div>
+        </article>
 
-// On mobile: cards are always visible, no hover interaction
-if (isMobile) {
-  allCards.forEach(card => card.classList.add('visible'));
-} else {
-  function openNews() {
-    if (closeTimeout) { clearTimeout(closeTimeout); closeTimeout = null; }
-    if (isOpen) return;
-    isOpen = true;
+        <article class="milestone">
+          <div class="milestone-year">2018</div>
+          <div>
+            <h3>Coverage across The Wire, Free Press Kashmir, and Kashmir Life</h3>
+            <p>
+              Media attention across multiple publications reinforces the work from an outside perspective and
+              gives the profile independent signal.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    hero.classList.add('news-active');
-    newsZone.classList.add('active');
+    <section class="section reveal" id="press">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Press</p>
+          <h2>Press coverage that reinforces the story.</h2>
+        </div>
+        <p>
+          Coverage across regional and national outlets adds context around Faizan's technical path,
+          recognition, and public-facing momentum.
+        </p>
+      </div>
 
-    allCards.forEach((card, i) => {
-      card.classList.remove('visible');
-      setTimeout(() => {
-        card.classList.add('visible');
-        if (i === allCards.length - 1) {
-          setTimeout(applyCurve, 100);
-        }
-      }, 140 + i * 100);
+      <div class="press-grid" id="pressGrid"></div>
+    </section>
+
+    <section class="section reveal" id="connect">
+      <div class="connect-card">
+        <div>
+          <p class="section-kicker">Connect</p>
+          <h2>If the brief needs technical credibility and startup pace, start here.</h2>
+          <p>
+            For partnerships, founder conversations, or engineering-focused opportunities, the cleanest way in
+            is through Faizan's public profiles and current ventures.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="https://www.linkedin.com/in/faizanfaiiz/"
+              target="_blank"
+              rel="noreferrer"
+            >Open LinkedIn</a>
+            <a
+              class="button button-secondary"
+              href="https://www.instagram.com/faizanfaiiz/"
+              target="_blank"
+              rel="noreferrer"
+            >Open Instagram</a>
+          </div>
+        </div>
+
+        <div class="connect-links">
+          <div class="connect-link-card">
+            <span>Current company</span>
+            <strong>Nearhuman</strong>
+            <a
+              href="https://www.linkedin.com/company/nearhuman/"
+              target="_blank"
+              rel="noreferrer"
+            >Visit company</a>
+          </div>
+
+          <div class="connect-link-card">
+            <span>Selected venture</span>
+            <strong>Scootrr</strong>
+            <a
+              href="https://www.scootrr.com"
+              target="_blank"
+              rel="noreferrer"
+            >Visit venture</a>
+          </div>
+
+          <div class="connect-link-card">
+            <span>Social</span>
+            <strong>Instagram</strong>
+            <a
+              href="https://www.instagram.com/faizanfaiiz/"
+              target="_blank"
+              rel="noreferrer"
+            >Follow profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>&copy; <span id="year"></span> Faizan Mir</div>
+    <div class="footer-links">
+      <a href="#story">Story</a>
+      <a href="#focus">Focus</a>
+      <a href="#press">Press</a>
+      <a href="#connect">Connect</a>
+    </div>
+  </footer>
+
+  <script>
+    const pressArticles = [
+      {
+        source: "The Wire",
+        headline: "Embattled Lanes of Kashmir: Self-Taught Inventors",
+        date: "Sep 2018",
+        url: "https://m.thewire.in/article/livewire/embattled-lanes-kashmir-self-taught-inventors",
+        image: "",
+        summary: "A broader feature that frames Faizan inside a story about self-taught inventors and technical curiosity."
+      },
+      {
+        source: "IndiaSkills / NSDC",
+        headline: "Medallion of Excellence - IndiaSkills National Robotics Competition",
+        date: "2018",
+        url: "https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3",
+        image: "Article2.jpg",
+        summary: "A direct proof point tied to robotics, competition, and engineering performance."
+      },
+      {
+        source: "Free Press Kashmir",
+        headline: "Meet the Two Kashmiri Geeks Who Break Things and Make Robots",
+        date: "Sep 2018",
+        url: "https://freepresskashmir.news/2018/09/25/meet-the-two-kashmiri-geeks-who-break-things-and-make-robots/amp/",
+        image: "Article3.jpg",
+        summary: "A profile that connects technical experimentation with public-facing storytelling."
+      },
+      {
+        source: "Kashmir Life",
+        headline: "J&K Qualifies for World Skills India National Competition",
+        date: "2018",
+        url: "https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/",
+        image: "Article4.jpg",
+        summary: "Coverage that reinforces the competition record and external recognition around robotics work."
+      }
+    ];
+
+    const pressGrid = document.getElementById("pressGrid");
+
+    pressArticles.forEach((article, index) => {
+      const card = document.createElement("a");
+      card.className = index === 0 ? "press-card featured" : "press-card";
+      card.href = article.url;
+      card.target = "_blank";
+      card.rel = "noreferrer";
+      card.setAttribute("aria-label", `${article.source}: ${article.headline}`);
+
+      const media = article.image
+        ? `
+          <div class="press-media">
+            <img src="${article.image}" alt="${article.headline}" loading="lazy">
+          </div>
+        `
+        : `
+          <div class="press-placeholder">
+            <span>Featured story</span>
+            <strong>Self-taught inventors and the instinct to build.</strong>
+          </div>
+        `;
+
+      card.innerHTML = `
+        ${media}
+        <div class="press-card-body">
+          <div class="press-meta">
+            <span>${article.source}</span>
+            <span>${article.date}</span>
+          </div>
+          <h3>${article.headline}</h3>
+          <p>${article.summary}</p>
+          <span class="press-link">Read coverage</span>
+        </div>
+      `;
+
+      pressGrid.appendChild(card);
     });
-  }
 
-  function closeNews() {
-    if (!isOpen) return;
-    closeTimeout = setTimeout(() => {
-      isOpen = false;
-      allCards.forEach(card => {
-        card.classList.remove('visible');
-        card.style.transform = '';
-        card.style.opacity = '';
+    const menuButton = document.getElementById("menuButton");
+    const siteNav = document.getElementById("siteNav");
+    const navLinks = siteNav.querySelectorAll("a");
+
+    if (menuButton) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
       });
-      setTimeout(() => {
-        hero.classList.remove('news-active');
-        newsZone.classList.remove('active');
-      }, 150);
-    }, 150);
-  }
 
-  newsZone.addEventListener('mouseenter', openNews);
-  newsZone.addEventListener('mouseleave', closeNews);
-  newsZone.addEventListener('focusin', openNews);
-  newsZone.addEventListener('focusout', e => {
-    if (!newsZone.contains(e.relatedTarget)) closeNews();
-  });
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          siteNav.classList.remove("is-open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
 
-  allCards.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-}
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealElements = document.querySelectorAll(".reveal");
 
-// ====== MOBILE MENU TOGGLE ======
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinksEl = document.getElementById('navLinks');
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    navLinksEl.classList.toggle('open');
-    // Animate hamburger to X
-    menuToggle.classList.toggle('active');
-  });
-  // Close menu when clicking a link
-  navLinksEl.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinksEl.classList.remove('open');
-      menuToggle.classList.remove('active');
-    });
-  });
-}
+    if (!prefersReducedMotion && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-// ====== PARALLAX PORTRAIT ======
-const portrait = document.getElementById('portrait');
-const wrap = document.querySelector('.hero-portrait-wrap');
-const maxShift = 5;
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.18
+      });
 
-wrap.addEventListener('mousemove', e => {
-  const rect = wrap.getBoundingClientRect();
-  const cx = rect.left + rect.width / 2;
-  const cy = rect.top + rect.height / 2;
-  const ratioX = (e.clientX - cx) / (rect.width / 2);
-  const ratioY = (e.clientY - cy) / (rect.height / 2);
-  portrait.style.transform = `translate(${ratioX * maxShift}px, ${ratioY * maxShift}px)`;
-});
-wrap.addEventListener('mouseleave', () => {
-  portrait.style.transform = 'translate(0px, 0px)';
-});
-</script>
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+    }
+
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = String(new Date().getFullYear());
+    }
+  </script>
 </body>
 </html>
