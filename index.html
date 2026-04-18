@@ -16,19 +16,16 @@
   >
   <style>
     :root {
-      --bg: #080907;
-      --bg-deep: #0f120e;
-      --surface: rgba(17, 21, 17, 0.8);
-      --surface-strong: rgba(23, 29, 23, 0.95);
-      --surface-soft: rgba(255, 255, 255, 0.03);
-      --text: #f4efe5;
-      --muted: #b6b0a1;
-      --subtle: #7f786c;
-      --line: rgba(244, 239, 229, 0.12);
-      --line-strong: rgba(244, 239, 229, 0.22);
-      --lime: #d7ff68;
-      --coral: #ff9860;
-      --shadow: 0 36px 90px rgba(0, 0, 0, 0.36);
+      --bg: #f3efe8;
+      --bg-soft: #ece7de;
+      --surface: rgba(255, 255, 255, 0.62);
+      --surface-strong: rgba(255, 255, 255, 0.82);
+      --text: #12110f;
+      --muted: #5f5a53;
+      --subtle: #8a847b;
+      --line: rgba(18, 17, 15, 0.14);
+      --line-strong: rgba(18, 17, 15, 0.22);
+      --shadow: 0 24px 60px rgba(18, 17, 15, 0.08);
       --radius-xl: 36px;
       --radius-lg: 26px;
       --radius-md: 18px;
@@ -50,36 +47,21 @@
       overflow-x: hidden;
       font-family: "Manrope", sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 12% 14%, rgba(215, 255, 104, 0.16), transparent 26%),
-        radial-gradient(circle at 88% 10%, rgba(255, 152, 96, 0.18), transparent 24%),
-        radial-gradient(circle at 78% 72%, rgba(215, 255, 104, 0.07), transparent 26%),
-        linear-gradient(180deg, #060706 0%, #0d100c 48%, #060706 100%);
+      background: linear-gradient(180deg, #f5f1ea 0%, #f1ece4 100%);
     }
 
-    body::before,
-    body::after {
+    body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: -2;
-    }
-
-    body::before {
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+        linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.018) 1px, transparent 1px);
       background-size: 96px 96px;
-      mask-image: radial-gradient(circle at center, black 38%, transparent 84%);
-      opacity: 0.24;
-    }
-
-    body::after {
-      z-index: -1;
-      background:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 50%);
-      opacity: 0.3;
+      mask-image: radial-gradient(circle at center, black 34%, transparent 84%);
+      opacity: 0.12;
+      z-index: -2;
     }
 
     a {
@@ -91,11 +73,11 @@
       display: block;
     }
 
-    .page-noise {
+    .page-grain {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.04;
+      opacity: 0.03;
       background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       z-index: 120;
@@ -104,10 +86,9 @@
     .scroll-progress {
       position: fixed;
       inset: 0 0 auto;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.06);
+      height: 2px;
       z-index: 160;
-      transform: translateZ(0);
+      background: rgba(18, 17, 15, 0.06);
     }
 
     .scroll-progress span {
@@ -116,8 +97,7 @@
       height: 100%;
       transform: scaleX(0);
       transform-origin: left center;
-      background: linear-gradient(90deg, var(--lime), var(--coral));
-      box-shadow: 0 0 24px rgba(215, 255, 104, 0.28);
+      background: var(--text);
     }
 
     .site-header {
@@ -137,10 +117,10 @@
       gap: 1rem;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(9, 11, 9, 0.74);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+      background: rgba(245, 241, 234, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 12px 32px rgba(18, 17, 15, 0.04);
     }
 
     .brand {
@@ -152,15 +132,11 @@
     }
 
     .brand-mark {
-      width: 0.95rem;
-      height: 0.95rem;
+      width: 0.8rem;
+      height: 0.8rem;
       flex-shrink: 0;
-      border-radius: 0.32rem;
-      transform: rotate(12deg);
-      background: linear-gradient(135deg, var(--lime), var(--coral));
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.08),
-        0 0 28px rgba(215, 255, 104, 0.28);
+      border-radius: 50%;
+      background: var(--text);
     }
 
     .brand-copy {
@@ -171,7 +147,7 @@
 
     .brand-copy strong {
       font-family: "Syne", sans-serif;
-      font-size: 1rem;
+      font-size: 0.96rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       white-space: nowrap;
@@ -193,11 +169,11 @@
 
     .site-nav a {
       text-decoration: none;
+      color: var(--muted);
       font-size: 0.76rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.24s ease;
+      transition: color 0.2s ease;
     }
 
     .site-nav a:hover,
@@ -208,9 +184,9 @@
     .site-nav .nav-cta {
       padding: 0.75rem 1rem;
       border-radius: 999px;
-      border: 1px solid rgba(215, 255, 104, 0.34);
-      color: var(--text);
-      background: rgba(215, 255, 104, 0.08);
+      border: 1px solid var(--text);
+      color: var(--bg);
+      background: var(--text);
     }
 
     .menu-button {
@@ -278,52 +254,48 @@
     .hero {
       min-height: calc(100vh - 6rem);
       display: grid;
-      grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
-      gap: clamp(2rem, 5vw, 5.2rem);
+      grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+      gap: clamp(2rem, 5vw, 5rem);
       align-items: center;
-      padding: clamp(2rem, 5vw, 4rem) 0 3rem;
-      position: relative;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 2;
+      padding: clamp(2rem, 6vw, 5rem) 0 3rem;
+      border-bottom: 1px solid rgba(18, 17, 15, 0.08);
     }
 
     .eyebrow,
     .section-kicker {
       margin: 0 0 1rem;
-      color: var(--lime);
-      font-size: 0.78rem;
-      letter-spacing: 0.24em;
+      color: var(--subtle);
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
-    .hero-lines {
-      display: grid;
-      gap: 0.2rem;
-    }
-
-    .hero-line {
-      display: block;
+    .hero-title {
       margin: 0;
+      max-width: 10ch;
       font-family: "Syne", sans-serif;
-      font-size: clamp(3.4rem, 8vw, 7rem);
+      font-size: clamp(3.5rem, 8vw, 7rem);
       line-height: 0.92;
       letter-spacing: -0.06em;
       text-wrap: balance;
       opacity: 0;
-      transform: translateY(36px);
+      transform: translateY(28px);
+    }
+
+    .hero-title em {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-weight: 400;
     }
 
     .hero-lead {
-      max-width: 56ch;
-      margin: 1.45rem 0 0;
+      max-width: 54ch;
+      margin: 1.5rem 0 0;
       color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.8;
+      font-size: 1.03rem;
+      line-height: 1.85;
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
     }
 
     .hero-actions {
@@ -332,15 +304,14 @@
       gap: 0.9rem;
       margin-top: 2rem;
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(20px);
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.55rem;
-      min-height: 3.35rem;
+      min-height: 3.3rem;
       padding: 0.9rem 1.25rem;
       border-radius: 999px;
       border: 1px solid transparent;
@@ -351,9 +322,8 @@
       text-transform: uppercase;
       transition:
         transform 0.22s ease,
-        border-color 0.22s ease,
         background-color 0.22s ease,
-        box-shadow 0.22s ease;
+        border-color 0.22s ease;
     }
 
     .button:hover,
@@ -362,82 +332,80 @@
     }
 
     .button-primary {
-      color: #10130d;
-      background: linear-gradient(135deg, var(--lime), #f5ffb8);
-      box-shadow: 0 18px 40px rgba(215, 255, 104, 0.18);
+      color: var(--bg);
+      background: var(--text);
     }
 
     .button-secondary {
       color: var(--text);
-      border-color: var(--line);
-      background: rgba(255, 255, 255, 0.02);
+      border-color: var(--line-strong);
+      background: transparent;
     }
 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 1.75rem 0 0;
-      padding: 0;
-      list-style: none;
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 2.2rem;
       opacity: 0;
       transform: translateY(20px);
     }
 
-    .hero-tags li {
-      padding: 0.7rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
+    .fact {
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .fact span {
+      display: block;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+    }
+
+    .fact strong {
+      display: block;
+      margin-top: 0.55rem;
+      font-family: "Syne", sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .fact p {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
     }
 
     .hero-visual {
       position: relative;
-      min-height: 700px;
+      min-height: 720px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .portrait-shell {
+    .portrait-frame {
       position: relative;
       width: min(100%, 500px);
       min-height: 640px;
-      border-radius: 42px;
-      border: 1px solid rgba(244, 239, 229, 0.15);
-      background:
-        radial-gradient(circle at top, rgba(215, 255, 104, 0.18), transparent 34%),
-        linear-gradient(180deg, rgba(255, 152, 96, 0.1), rgba(14, 18, 14, 0.94) 32%, #090a08 100%);
-      overflow: hidden;
+      padding: 1rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
       box-shadow: var(--shadow);
-      isolation: isolate;
       opacity: 0;
-      transform: translateY(30px) scale(0.98);
+      transform: translateY(24px) scale(0.985);
     }
 
-    .portrait-shell::before {
-      content: "";
-      position: absolute;
-      inset: 1rem;
-      border-radius: 32px;
-      border: 1px solid rgba(244, 239, 229, 0.08);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
-      z-index: 0;
-    }
-
-    .portrait-shell::after {
-      content: "";
-      position: absolute;
-      inset: auto 10% 5%;
-      height: 22%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(215, 255, 104, 0.18), transparent 68%);
-      filter: blur(24px);
-      z-index: 0;
+    .portrait-inner {
+      position: relative;
+      min-height: 608px;
+      overflow: hidden;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #f1ece4 0%, #e8e1d8 100%);
     }
 
     .hero-portrait {
@@ -447,149 +415,65 @@
       height: 100%;
       object-fit: contain;
       object-position: center bottom;
-      z-index: 1;
-      transform: translate3d(0, 0, 0) scale(1.04);
+      filter: grayscale(100%);
+      transform: translate3d(0, 0, 0) scale(1.03);
       will-change: transform;
     }
 
-    .floating-card {
+    .portrait-note {
       position: absolute;
-      max-width: 245px;
-      padding: 1rem 1.1rem;
-      border-radius: 22px;
-      border: 1px solid rgba(244, 239, 229, 0.14);
-      background: rgba(12, 15, 12, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.26);
-      z-index: 2;
+      left: 1.6rem;
+      right: 1.6rem;
+      bottom: 1.6rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(18, 17, 15, 0.12);
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(18px);
     }
 
-    .floating-card strong {
+    .portrait-note strong {
       display: block;
+      color: var(--text);
       font-family: "Syne", sans-serif;
       font-size: 1rem;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
-    .floating-card span {
-      display: block;
-      margin-top: 0.45rem;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    .card-top {
-      top: 10%;
-      left: 0;
-      transform: translateX(-16%) translateY(22px);
-    }
-
-    .card-bottom {
-      right: 0;
-      bottom: 11%;
-      transform: translateX(14%) translateY(22px);
-    }
-
-    body.is-ready .hero-line,
+    body.is-ready .hero-title,
     body.is-ready .hero-lead,
     body.is-ready .hero-actions,
-    body.is-ready .hero-tags,
-    body.is-ready .portrait-shell,
-    body.is-ready .floating-card {
+    body.is-ready .hero-facts,
+    body.is-ready .portrait-frame,
+    body.is-ready .portrait-note {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
 
-    body.is-ready .hero-line:nth-child(1) {
+    body.is-ready .hero-title {
       transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
     }
 
-    body.is-ready .hero-line:nth-child(2) {
-      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.16s, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
-    }
-
-    body.is-ready .hero-line:nth-child(3) {
-      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.24s, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.24s;
-    }
-
     body.is-ready .hero-lead {
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.34s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.34s;
+      transition: opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1) 0.18s, transform 0.78s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
     }
 
     body.is-ready .hero-actions {
-      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.44s, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.44s;
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.28s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.28s;
     }
 
-    body.is-ready .hero-tags {
-      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.54s, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.54s;
+    body.is-ready .hero-facts {
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.38s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.38s;
     }
 
-    body.is-ready .portrait-shell {
-      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+    body.is-ready .portrait-frame {
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.14s, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
     }
 
-    body.is-ready .card-top {
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.52s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.52s;
-      transform: translateX(-16%) translateY(0);
-    }
-
-    body.is-ready .card-bottom {
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.66s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.66s;
-      transform: translateX(14%) translateY(0);
-    }
-
-    .quick-signals {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      padding: 0 0 1rem;
-    }
-
-    .signal-card {
-      display: block;
-      padding: 1.3rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.038), rgba(255, 255, 255, 0.01));
-      text-decoration: none;
-      transition:
-        transform 0.24s ease,
-        border-color 0.24s ease,
-        box-shadow 0.24s ease;
-    }
-
-    .signal-card:hover,
-    .signal-card:focus-visible {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
-    }
-
-    .signal-card span {
-      display: block;
-      color: var(--subtle);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .signal-card strong {
-      display: block;
-      margin-top: 0.8rem;
-      font-family: "Syne", sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-    }
-
-    .signal-card p {
-      margin: 0.6rem 0 0;
-      color: var(--muted);
-      line-height: 1.75;
+    body.is-ready .portrait-note {
+      transition: opacity 0.74s cubic-bezier(0.22, 1, 0.36, 1) 0.42s, transform 0.74s cubic-bezier(0.22, 1, 0.36, 1) 0.42s;
     }
 
     .section {
@@ -598,7 +482,7 @@
 
     .section-heading {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
       gap: 1.5rem;
       align-items: end;
       margin-bottom: 2rem;
@@ -615,198 +499,166 @@
 
     .section-heading p {
       margin: 0;
+      max-width: 38ch;
       color: var(--muted);
       line-height: 1.8;
-      max-width: 42ch;
     }
 
-    .scroll-story {
-      padding-top: clamp(4rem, 8vw, 7rem);
-      padding-bottom: clamp(4rem, 8vw, 7rem);
-    }
-
-    .story-scroll {
-      position: relative;
-      height: 260vh;
-    }
-
-    .story-sticky {
-      position: sticky;
-      top: 6rem;
-      height: calc(100vh - 7rem);
+    .what-grid {
       display: grid;
-      grid-template-columns: minmax(280px, 0.86fr) minmax(0, 1.14fr);
-      gap: clamp(1.5rem, 4vw, 3rem);
-      align-items: center;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
     }
 
-    .story-copy h2 {
-      margin: 0;
-      font-family: "Syne", sans-serif;
-      font-size: clamp(2.2rem, 4vw, 4.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      text-wrap: balance;
-    }
-
-    .story-copy p {
-      margin: 1rem 0 0;
-      max-width: 34ch;
-      color: var(--muted);
-      line-height: 1.85;
-    }
-
-    .story-steps {
-      display: grid;
-      gap: 0.75rem;
-      margin-top: 1.6rem;
-    }
-
-    .story-step {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.8rem;
-      align-items: center;
-      padding: 0.95rem 1rem;
-      border-radius: 18px;
-      border: 1px solid rgba(244, 239, 229, 0.08);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--subtle);
-      transition: border-color 0.22s ease, background 0.22s ease, color 0.22s ease, transform 0.22s ease;
-    }
-
-    .story-step span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 999px;
-      border: 1px solid rgba(244, 239, 229, 0.12);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .story-step strong {
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .story-step.is-active {
-      color: var(--text);
-      border-color: var(--line-strong);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateX(6px);
-    }
-
-    .story-step.is-active span {
-      color: #10130d;
-      background: var(--lime);
-      border-color: transparent;
-    }
-
-    .story-stage {
-      position: relative;
-      min-height: 560px;
-    }
-
-    .stack-card {
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: min(100%, 560px);
-      padding: 1.7rem;
-      border-radius: 32px;
+    .what-card {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
-        rgba(12, 16, 12, 0.92);
-      box-shadow: var(--shadow);
-      transform-origin: center top;
-      will-change: transform, opacity, filter;
+      background: var(--surface);
     }
 
-    .stack-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--lime), transparent 72%);
-    }
-
-    .stack-card.engineer::before {
-      background: linear-gradient(90deg, var(--coral), transparent 72%);
-    }
-
-    .stack-card.carry::before {
-      background: linear-gradient(90deg, #f7d7a7, transparent 72%);
-    }
-
-    .stack-card .card-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
+    .what-card span {
+      display: block;
       color: var(--subtle);
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    .stack-card h3 {
-      margin: 1.1rem 0 0;
+    .what-card h3 {
+      margin: 0.85rem 0 0;
       font-family: "Syne", sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .what-card p {
+      margin: 0.8rem 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .process-shell {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: start;
+    }
+
+    .process-intro {
+      position: sticky;
+      top: 6.5rem;
+    }
+
+    .process-intro h2 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.9rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .process-intro p {
+      margin: 1rem 0 0;
+      max-width: 30ch;
+      color: var(--muted);
+      line-height: 1.82;
+    }
+
+    .process-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.8rem;
+      height: 4.8rem;
+      margin-top: 2rem;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      font-family: "Instrument Serif", serif;
+      font-size: 1.7rem;
+      font-style: italic;
+    }
+
+    .process-track {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .process-step {
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .process-card {
+      width: 100%;
+      padding: 1.8rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      box-shadow: 0 18px 40px rgba(18, 17, 15, 0.05);
+      opacity: 0.38;
+      transform: translateY(24px);
+      transition:
+        opacity 0.28s ease,
+        transform 0.28s ease,
+        border-color 0.28s ease;
+    }
+
+    .process-step.is-active .process-card {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: var(--line-strong);
+    }
+
+    .process-label {
+      display: block;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .process-card h3 {
+      margin: 0.95rem 0 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.9rem);
       line-height: 1;
       letter-spacing: -0.05em;
       text-wrap: balance;
     }
 
-    .stack-card p {
+    .process-card p {
       margin: 1rem 0 0;
+      max-width: 36ch;
       color: var(--muted);
       line-height: 1.85;
-      max-width: 38ch;
     }
 
-    .stack-points {
-      margin: 1.1rem 0 0;
+    .process-points {
+      margin: 1rem 0 0;
       padding: 0;
       list-style: none;
       display: grid;
       gap: 0.8rem;
     }
 
-    .stack-points li {
+    .process-points li {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 0.75rem;
-      align-items: start;
+      line-height: 1.78;
       color: var(--text);
-      line-height: 1.75;
     }
 
-    .stack-points li::before {
+    .process-points li::before {
       content: "";
-      width: 0.55rem;
-      height: 0.55rem;
-      margin-top: 0.55rem;
-      border-radius: 999px;
-      background: var(--lime);
-      box-shadow: 0 0 0 6px rgba(215, 255, 104, 0.08);
-    }
-
-    .engineer .stack-points li::before {
-      background: var(--coral);
-      box-shadow: 0 0 0 6px rgba(255, 152, 96, 0.08);
-    }
-
-    .carry .stack-points li::before {
-      background: #f7d7a7;
-      box-shadow: 0 0 0 6px rgba(247, 215, 167, 0.08);
+      width: 0.48rem;
+      height: 0.48rem;
+      margin-top: 0.62rem;
+      border-radius: 50%;
+      background: var(--text);
     }
 
     .proof-grid {
@@ -819,9 +671,7 @@
       padding: 1.45rem;
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
-        rgba(12, 15, 12, 0.85);
+      background: var(--surface);
     }
 
     .proof-card span {
@@ -835,7 +685,7 @@
     .proof-card h3 {
       margin: 0.85rem 0 0;
       font-family: "Syne", sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.28rem;
       letter-spacing: -0.03em;
     }
 
@@ -846,12 +696,6 @@
     }
 
     .proof-card a,
-    .connect-link::after,
-    .press-link::after {
-      color: var(--lime);
-    }
-
-    .proof-card a,
     .press-link,
     .connect-link {
       display: inline-flex;
@@ -859,7 +703,7 @@
       gap: 0.45rem;
       margin-top: 1rem;
       text-decoration: none;
-      font-size: 0.79rem;
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -881,42 +725,41 @@
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      border-radius: 30px;
+      border-radius: 28px;
       border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+      background: var(--surface-strong);
       overflow: hidden;
       text-decoration: none;
       transition:
-        transform 0.26s ease,
-        border-color 0.26s ease,
-        box-shadow 0.26s ease;
+        transform 0.24s ease,
+        border-color 0.24s ease,
+        box-shadow 0.24s ease;
     }
 
     .press-card:hover,
     .press-card:focus-visible {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: var(--line-strong);
-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 18px 40px rgba(18, 17, 15, 0.06);
     }
 
     .press-card.featured {
       grid-column: span 2;
       display: grid;
-      grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(250px, 0.92fr) minmax(0, 1.08fr);
     }
 
     .press-media {
       min-height: 260px;
-      background: #0d100c;
       overflow: hidden;
+      background: var(--bg-soft);
     }
 
     .press-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.94) contrast(1.04);
+      filter: grayscale(100%);
     }
 
     .press-placeholder {
@@ -925,15 +768,13 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      background:
-        radial-gradient(circle at top left, rgba(215, 255, 104, 0.25), transparent 42%),
-        linear-gradient(145deg, rgba(255, 152, 96, 0.18), rgba(8, 10, 8, 0.96));
+      background: linear-gradient(180deg, #efeae2 0%, #e5ded4 100%);
     }
 
     .press-placeholder span {
-      color: rgba(244, 239, 229, 0.78);
-      font-size: 0.74rem;
-      letter-spacing: 0.24em;
+      color: var(--subtle);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
@@ -968,14 +809,14 @@
     .press-card h3 {
       margin: 1rem 0 0;
       font-family: "Syne", sans-serif;
-      font-size: clamp(1.35rem, 2vw, 1.95rem);
+      font-size: clamp(1.32rem, 2vw, 1.95rem);
       line-height: 1.08;
       letter-spacing: -0.04em;
       text-wrap: balance;
     }
 
     .press-card p {
-      margin: 0.85rem 0 0;
+      margin: 0.8rem 0 0;
       color: var(--muted);
       line-height: 1.8;
     }
@@ -987,15 +828,13 @@
 
     .connect-card {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
       gap: 1.5rem;
       padding: clamp(1.7rem, 3vw, 2.3rem);
-      border-radius: 38px;
-      border: 1px solid rgba(244, 239, 229, 0.14);
-      background:
-        radial-gradient(circle at top right, rgba(215, 255, 104, 0.18), transparent 28%),
-        linear-gradient(145deg, rgba(255, 152, 96, 0.08), rgba(15, 18, 14, 0.96));
-      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      box-shadow: 0 16px 34px rgba(18, 17, 15, 0.05);
     }
 
     .connect-card h2 {
@@ -1009,9 +848,9 @@
 
     .connect-card p {
       margin: 1rem 0 0;
+      max-width: 44ch;
       color: var(--muted);
-      line-height: 1.8;
-      max-width: 48ch;
+      line-height: 1.82;
     }
 
     .connect-links {
@@ -1024,7 +863,7 @@
       padding: 1rem 1.1rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.45);
     }
 
     .connect-link-card span {
@@ -1051,7 +890,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      border-top: 1px solid rgba(244, 239, 229, 0.08);
+      border-top: 1px solid rgba(18, 17, 15, 0.08);
       color: var(--subtle);
       font-size: 0.82rem;
     }
@@ -1074,10 +913,10 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(34px);
+      transform: translateY(32px);
       transition:
-        opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.76s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.76s cubic-bezier(0.22, 1, 0.36, 1);
       transition-delay: var(--delay, 0s);
     }
 
@@ -1087,49 +926,37 @@
     }
 
     @media (max-width: 1080px) {
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-copy {
-        order: 2;
-      }
-
-      .hero-visual {
-        order: 1;
-        min-height: 560px;
-      }
-
-      .story-sticky,
+      .hero,
       .section-heading,
       .connect-card {
         grid-template-columns: 1fr;
       }
 
-      .quick-signals,
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 560px;
+      }
+
+      .hero-facts,
+      .what-grid,
       .proof-grid {
         grid-template-columns: 1fr;
+      }
+
+      .process-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .process-intro {
+        position: static;
       }
 
       .press-card.featured {
         grid-column: span 1;
         grid-template-columns: 1fr;
-      }
-
-      .card-top {
-        left: 1rem;
-        transform: translateY(22px);
-      }
-
-      .card-bottom {
-        right: 1rem;
-        transform: translateY(22px);
-      }
-
-      body.is-ready .card-top,
-      body.is-ready .card-bottom {
-        transform: translateY(0);
       }
     }
 
@@ -1153,9 +980,9 @@
         padding: 0.8rem;
         border-radius: 24px;
         border: 1px solid var(--line);
-        background: rgba(9, 11, 9, 0.96);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+        background: rgba(245, 241, 234, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-8px);
@@ -1169,7 +996,7 @@
       .site-nav a {
         padding: 0.95rem 1rem;
         border-radius: 18px;
-        background: rgba(255, 255, 255, 0.025);
+        background: rgba(255, 255, 255, 0.45);
       }
 
       .site-nav.is-open {
@@ -1179,32 +1006,13 @@
         pointer-events: auto;
       }
 
-      .story-scroll {
-        height: auto;
-      }
-
-      .story-sticky {
-        position: static;
-        height: auto;
-      }
-
-      .story-stage {
+      .process-step {
         min-height: auto;
-        display: grid;
-        gap: 1rem;
       }
 
-      .stack-card {
-        position: relative;
-        width: 100%;
-        transform: none !important;
+      .process-card {
         opacity: 1 !important;
-        filter: none !important;
-        margin: 0;
-      }
-
-      .story-step.is-active {
-        transform: none;
+        transform: none !important;
       }
 
       .press-grid {
@@ -1235,15 +1043,11 @@
       }
 
       main {
-        padding-top: 1.1rem;
+        padding-top: 1rem;
       }
 
-      .hero {
-        gap: 1.7rem;
-      }
-
-      .hero-line {
-        font-size: clamp(2.85rem, 15vw, 4.8rem);
+      .hero-title {
+        font-size: clamp(2.9rem, 14vw, 4.8rem);
       }
 
       .hero-lead {
@@ -1262,23 +1066,16 @@
         min-height: 470px;
       }
 
-      .portrait-shell {
+      .portrait-frame {
         min-height: 470px;
-        border-radius: 32px;
       }
 
-      .floating-card {
-        position: static;
-        max-width: none;
+      .portrait-inner {
+        min-height: 438px;
       }
 
-      .hero-visual {
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .story-copy h2,
       .section-heading h2,
+      .process-intro h2,
       .connect-card h2 {
         font-size: clamp(1.9rem, 10vw, 3rem);
       }
@@ -1297,12 +1094,12 @@
       }
 
       .reveal,
-      .hero-line,
+      .hero-title,
       .hero-lead,
       .hero-actions,
-      .hero-tags,
-      .portrait-shell,
-      .floating-card {
+      .hero-facts,
+      .portrait-frame,
+      .portrait-note {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -1310,7 +1107,7 @@
   </style>
 </head>
 <body id="top">
-  <div class="page-noise" aria-hidden="true"></div>
+  <div class="page-grain" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true">
     <span id="scrollProgressBar"></span>
   </div>
@@ -1337,8 +1134,8 @@
       </button>
 
       <nav class="site-nav" id="siteNav" aria-label="Primary">
-        <a href="#work">What I do</a>
-        <a href="#signals">Proof</a>
+        <a href="#what">What I Do</a>
+        <a href="#process">How I Work</a>
         <a href="#press">Press</a>
         <a href="#connect">Connect</a>
         <a
@@ -1353,161 +1150,146 @@
 
   <main>
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-copy">
-        <p class="eyebrow">Founder at Nearhuman / robotics engineer / Bristol</p>
-
-        <h1 class="hero-lines" id="heroTitle">
-          <span class="hero-line">I turn early ideas</span>
-          <span class="hero-line">into things that</span>
-          <span class="hero-line">actually work.</span>
+      <div>
+        <p class="eyebrow">Faizan Mir / Bristol / founder and robotics engineer</p>
+        <h1 class="hero-title" id="heroTitle">
+          I build the first version that <em>proves</em> the idea.
         </h1>
-
         <p class="hero-lead">
-          Products. Prototypes. Companies. I work where robotics, embedded systems, and starting companies overlap.
-          I like the messy phase where something has to function before anyone gets excited about it.
+          I start companies and engineer prototypes. Most of my work sits between robotics, embedded systems,
+          and new products that need to become real quickly.
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="#work">See What I Do</a>
+          <a class="button button-primary" href="#what">See The Work</a>
           <a class="button button-secondary" href="#press">Read The Press</a>
         </div>
 
-        <ul class="hero-tags">
-          <li>Nearhuman</li>
-          <li>Robotics</li>
-          <li>Prototype builds</li>
-          <li>Embedded systems</li>
-        </ul>
+        <div class="hero-facts">
+          <div class="fact">
+            <span>Now</span>
+            <strong>Nearhuman</strong>
+            <p>Current company and the clearest picture of how I like to build.</p>
+          </div>
+          <div class="fact">
+            <span>Proof</span>
+            <strong>IndiaSkills</strong>
+            <p>Medallion of Excellence in the national robotics competition.</p>
+          </div>
+          <div class="fact">
+            <span>Also</span>
+            <strong>Scootrr</strong>
+            <p>Another company that shows I do not work in just one lane.</p>
+          </div>
+        </div>
       </div>
 
       <div class="hero-visual">
-        <div class="portrait-shell">
-          <img
-            src="Main Image.png"
-            alt="Portrait of Faizan Mir"
-            class="hero-portrait"
-            id="heroPortrait"
-          >
-        </div>
-
-        <div class="floating-card card-top">
-          <strong>Current home base</strong>
-          <span>Building Nearhuman and taking ideas from first sketch to first real version.</span>
-        </div>
-
-        <div class="floating-card card-bottom">
-          <strong>Best fit</strong>
-          <span>Early-stage work that needs real engineering, speed, and someone willing to build through ambiguity.</span>
+        <div class="portrait-frame">
+          <div class="portrait-inner">
+            <img
+              src="Main Image.png"
+              alt="Portrait of Faizan Mir"
+              class="hero-portrait"
+              id="heroPortrait"
+            >
+          </div>
+          <div class="portrait-note">
+            <strong>Good fit</strong>
+            Early-stage work that needs real engineering, quick decisions, and someone willing to build before the story is polished.
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="quick-signals reveal" id="signals">
-      <a
-        class="signal-card"
-        href="https://www.linkedin.com/company/nearhuman/"
-        target="_blank"
-        rel="noreferrer"
-        style="--delay: 0.08s"
-      >
-        <span>Now</span>
-        <strong>Nearhuman</strong>
-        <p>Current company and the clearest expression of how I like to build.</p>
-      </a>
+    <section class="section reveal" id="what">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">What I do</p>
+          <h2>Start it. Build it. Make it make sense.</h2>
+        </div>
+        <p>
+          The work usually begins before there is a tidy plan. That is the part I like: decide what matters, build a version, and move it forward.
+        </p>
+      </div>
 
-      <a
-        class="signal-card"
-        href="https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3"
-        target="_blank"
-        rel="noreferrer"
-        style="--delay: 0.14s"
-      >
-        <span>2018</span>
-        <strong>IndiaSkills recognition</strong>
-        <p>Medallion of Excellence in the national robotics competition.</p>
-      </a>
+      <div class="what-grid">
+        <article class="what-card reveal" style="--delay: 0.06s">
+          <span>01</span>
+          <h3>Start the thing</h3>
+          <p>Take an idea that is still vague and turn it into a plan people can act on.</p>
+        </article>
 
-      <a
-        class="signal-card"
-        href="#press"
-        style="--delay: 0.2s"
-      >
-        <span>Press</span>
-        <strong>The Wire and more</strong>
-        <p>Coverage that shows the work has been noticed outside my own circle.</p>
-      </a>
+        <article class="what-card reveal" style="--delay: 0.12s">
+          <span>02</span>
+          <h3>Build the version</h3>
+          <p>Work across prototypes, electronics, robotics, and embedded systems until it behaves in the real world.</p>
+        </article>
+
+        <article class="what-card reveal" style="--delay: 0.18s">
+          <span>03</span>
+          <h3>Carry it forward</h3>
+          <p>Shape the company, explain the work clearly, and give other people something real to react to.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="scroll-story section" id="work">
-      <div class="story-scroll" id="storyScroll">
-        <div class="story-sticky">
-          <div class="story-copy">
-            <p class="section-kicker">What I do</p>
-            <h2>I build, engineer, and carry things into the world.</h2>
-            <p>
-              When a project is early, messy, and real, this is where I am most useful. Three roles keep showing
-              up in my work, and they usually happen at the same time.
-            </p>
+    <section class="section" id="process">
+      <div class="process-shell">
+        <div class="process-intro">
+          <p class="section-kicker">How I work</p>
+          <h2>Three moves, repeated until the work is real.</h2>
+          <p>
+            The order changes. The mix changes. The pattern does not.
+          </p>
+          <div class="process-index" id="processIndex">01</div>
+        </div>
 
-            <div class="story-steps" id="storySteps">
-              <div class="story-step is-active" data-index="0">
-                <span>01</span>
-                <strong>Build the first version</strong>
-              </div>
-              <div class="story-step" data-index="1">
-                <span>02</span>
-                <strong>Handle the hard technical part</strong>
-              </div>
-              <div class="story-step" data-index="2">
-                <span>03</span>
-                <strong>Get the work in front of people</strong>
-              </div>
+        <div class="process-track">
+          <article class="process-step is-active" data-step="01">
+            <div class="process-card">
+              <span class="process-label">Step 01</span>
+              <h3>Get to the first real version fast.</h3>
+              <p>
+                The first useful version does not need to look finished. It needs to prove that the thing can exist.
+              </p>
+              <ul class="process-points">
+                <li>Strip the idea down to the part that matters.</li>
+                <li>Build something testable as early as possible.</li>
+                <li>Use the prototype to force better decisions.</li>
+              </ul>
             </div>
-          </div>
+          </article>
 
-          <div class="story-stage">
-            <article class="stack-card build" data-index="0">
-              <span class="card-label">Build</span>
-              <h3>Take a rough idea and make the first real version.</h3>
+          <article class="process-step" data-step="02">
+            <div class="process-card">
+              <span class="process-label">Step 02</span>
+              <h3>Keep the engineering honest.</h3>
               <p>
-                I like the part where a concept still looks half-formed. That is usually the best moment to make it
-                tangible and give people something real to react to.
+                Robotics and electronics do not care about how good the pitch sounds. They either work or they do not.
               </p>
-              <ul class="stack-points">
-                <li>Prototype quickly so the conversation stops being theoretical.</li>
-                <li>Cut through ambiguity and decide what matters first.</li>
-                <li>Get a working version into the room as early as possible.</li>
+              <ul class="process-points">
+                <li>Stay close to the technical detail.</li>
+                <li>Solve the real constraint instead of narrating around it.</li>
+                <li>Make sure the working version is not pretending.</li>
               </ul>
-            </article>
+            </div>
+          </article>
 
-            <article class="stack-card engineer" data-index="1">
-              <span class="card-label">Engineer</span>
-              <h3>Handle the technical bits that cannot be faked.</h3>
+          <article class="process-step" data-step="03">
+            <div class="process-card">
+              <span class="process-label">Step 03</span>
+              <h3>Give the work a company and a clear message.</h3>
               <p>
-                Robotics, electronics, and embedded systems only matter if they behave in the real world. That part
-                of the work needs patience, clear thinking, and a willingness to stay close to the details.
+                When the product starts to work, the next job is making sure other people understand why it matters.
               </p>
-              <ul class="stack-points">
-                <li>Work across robotics, electronics, and embedded systems.</li>
-                <li>Solve practical problems instead of dressing them up in slide language.</li>
-                <li>Keep the technical side grounded in something usable.</li>
+              <ul class="process-points">
+                <li>Build the company around the work.</li>
+                <li>Explain it clearly enough that other people get it fast.</li>
+                <li>Let results create trust, press, and interest.</li>
               </ul>
-            </article>
-
-            <article class="stack-card carry" data-index="2">
-              <span class="card-label">Carry</span>
-              <h3>Make the work visible to the people who matter.</h3>
-              <p>
-                A project is not finished when it works. It also needs a company, a clear message, and enough
-                visibility that other people understand why it matters.
-              </p>
-              <ul class="stack-points">
-                <li>Shape the company around the work, not just the technical output.</li>
-                <li>Explain the work simply enough that other people get it fast.</li>
-                <li>Let real results create the press, partnerships, and trust.</li>
-              </ul>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1519,15 +1301,15 @@
           <h2>A few hard facts.</h2>
         </div>
         <p>
-          The point is simple: current company, real technical recognition, and outside coverage. No filler needed.
+          Current company, robotics recognition, and outside coverage. That is enough.
         </p>
       </div>
 
       <div class="proof-grid">
         <article class="proof-card reveal" style="--delay: 0.06s">
           <span>Now</span>
-          <h3>Founder at Nearhuman</h3>
-          <p>Current company and the clearest snapshot of how I like to work.</p>
+          <h3>Nearhuman</h3>
+          <p>The clearest view of the kind of work I want to keep doing.</p>
           <a
             href="https://www.linkedin.com/company/nearhuman/"
             target="_blank"
@@ -1543,13 +1325,13 @@
             href="https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3"
             target="_blank"
             rel="noreferrer"
-          >View recognition</a>
+          >View Recognition</a>
         </article>
 
         <article class="proof-card reveal" style="--delay: 0.18s">
           <span>Also</span>
           <h3>Scootrr</h3>
-          <p>Another company that shows range beyond one project.</p>
+          <p>Another company in the mix, and another sign that the work spans more than one idea.</p>
           <a
             href="https://www.scootrr.com"
             target="_blank"
@@ -1563,10 +1345,10 @@
       <div class="section-heading">
         <div>
           <p class="section-kicker">Press</p>
-          <h2>Coverage that says it plainly.</h2>
+          <h2>Outside writing on the work.</h2>
         </div>
         <p>
-          A few places where the work has been written about, from broad features to direct competition coverage.
+          A small set of features and competition coverage that put the work in public view.
         </p>
       </div>
 
@@ -1579,8 +1361,7 @@
           <p class="section-kicker">Connect</p>
           <h2>If you want to build something real, start here.</h2>
           <p>
-            LinkedIn is the cleanest way in. Nearhuman shows the current work. Instagram and Scootrr add more context
-            if you want the wider picture.
+            LinkedIn is the cleanest way in. Nearhuman shows the current work. The other links fill out the picture.
           </p>
           <div class="hero-actions reveal" style="--delay: 0.08s">
             <a
@@ -1639,8 +1420,8 @@
   <footer class="site-footer">
     <div>&copy; <span id="year"></span> Faizan Mir</div>
     <div class="footer-links">
-      <a href="#work">What I do</a>
-      <a href="#signals">Proof</a>
+      <a href="#what">What I Do</a>
+      <a href="#process">How I Work</a>
       <a href="#press">Press</a>
       <a href="#connect">Connect</a>
     </div>
@@ -1662,7 +1443,7 @@
         date: "2018",
         url: "https://www.facebook.com/IndiaSkills/photos/a.944683662231482/2465346493498517/?type=3",
         image: "Article2.jpg",
-        summary: "Direct competition proof tied to robotics and engineering performance."
+        summary: "A competition result tied directly to robotics work."
       },
       {
         source: "Free Press Kashmir",
@@ -1678,7 +1459,7 @@
         date: "2018",
         url: "https://kashmirlife.net/jk-qualifies-for-world-skills-india-national-competition-176531/",
         image: "Article4.jpg",
-        summary: "Competition coverage that puts the technical work in public view."
+        summary: "Competition coverage that puts the robotics work in public view."
       }
     ];
 
@@ -1686,11 +1467,10 @@
     const menuButton = document.getElementById("menuButton");
     const siteNav = document.getElementById("siteNav");
     const navLinks = siteNav.querySelectorAll("a");
-    const heroPortrait = document.getElementById("heroPortrait");
     const progressBar = document.getElementById("scrollProgressBar");
-    const storyScroll = document.getElementById("storyScroll");
-    const storyCards = Array.from(document.querySelectorAll(".stack-card"));
-    const storySteps = Array.from(document.querySelectorAll(".story-step"));
+    const heroPortrait = document.getElementById("heroPortrait");
+    const processIndex = document.getElementById("processIndex");
+    const processSteps = Array.from(document.querySelectorAll(".process-step"));
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     pressArticles.forEach((article, index) => {
@@ -1745,51 +1525,6 @@
       });
     }
 
-    function setActiveStoryStep(activeIndex) {
-      storySteps.forEach((step, index) => {
-        step.classList.toggle("is-active", index === activeIndex);
-      });
-    }
-
-    function updateStoryStack() {
-      if (!storyScroll || !storyCards.length) {
-        return;
-      }
-
-      if (prefersReducedMotion || window.innerWidth < 900) {
-        setActiveStoryStep(0);
-        storyCards.forEach((card) => {
-          card.style.transform = "";
-          card.style.opacity = "";
-          card.style.zIndex = "";
-          card.style.filter = "";
-        });
-        return;
-      }
-
-      const rect = storyScroll.getBoundingClientRect();
-      const total = storyScroll.offsetHeight - window.innerHeight;
-      const progress = total <= 0 ? 0 : Math.min(Math.max(-rect.top / total, 0), 1);
-      const current = progress * (storyCards.length - 1);
-      const activeIndex = Math.round(current);
-
-      setActiveStoryStep(activeIndex);
-
-      storyCards.forEach((card, index) => {
-        const offset = index - current;
-        const distance = Math.abs(offset);
-        const scale = 1 - Math.min(distance * 0.08, 0.18);
-        const translateY = offset * 88;
-        const rotate = offset * -3.2;
-        const opacity = 1 - Math.min(distance * 0.44, 0.8);
-
-        card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale}) rotate(${rotate}deg)`;
-        card.style.opacity = String(opacity);
-        card.style.zIndex = String(100 - Math.round(distance * 10));
-        card.style.filter = `blur(${Math.max(distance - 0.2, 0) * 2.5}px)`;
-      });
-    }
-
     function updateProgressBar() {
       if (!progressBar) {
         return;
@@ -1801,21 +1536,49 @@
       progressBar.style.transform = `scaleX(${progress})`;
     }
 
-    function updateParallax() {
+    function updatePortraitParallax() {
       if (!heroPortrait || prefersReducedMotion) {
         return;
       }
 
-      const heroShift = Math.min(window.scrollY * 0.055, 36);
-      heroPortrait.style.transform = `translate3d(0, ${heroShift * -1}px, 0) scale(1.04)`;
+      const shift = Math.min(window.scrollY * 0.035, 18);
+      heroPortrait.style.transform = `translate3d(0, ${shift * -1}px, 0) scale(1.03)`;
+    }
+
+    function updateProcessState() {
+      if (!processSteps.length) {
+        return;
+      }
+
+      let active = processSteps[0];
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      processSteps.forEach((step) => {
+        const rect = step.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - window.innerHeight / 2);
+
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          active = step;
+        }
+      });
+
+      processSteps.forEach((step) => {
+        step.classList.toggle("is-active", step === active);
+      });
+
+      if (processIndex) {
+        processIndex.textContent = active.dataset.step || "01";
+      }
     }
 
     let ticking = false;
 
     function updateOnScroll() {
       updateProgressBar();
-      updateStoryStack();
-      updateParallax();
+      updatePortraitParallax();
+      updateProcessState();
       ticking = false;
     }
 
