@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="Faizan Mir is Founder & CEO at nearhuman.co. Before Nearhuman, he co-founded three tech companies and works across product, robotics, and embedded systems."
+    content="Faizan Mir is Founder & CEO at nearhuman.co. Before Nearhuman, he co-founded three tech companies. He works across product, robotics, and embedded systems."
   >
   <title>Faizan Mir | Founder & CEO at nearhuman.co</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
   <style>
     :root {
-      --bg: #f7f4ee;
-      --bg-soft: #efebe3;
-      --surface: rgba(255, 255, 255, 0.78);
-      --surface-strong: rgba(255, 255, 255, 0.9);
-      --text: #111111;
-      --muted: #5e5a54;
-      --subtle: #8a857c;
-      --line: rgba(17, 17, 17, 0.12);
-      --line-strong: rgba(17, 17, 17, 0.2);
-      --shadow: 0 24px 70px rgba(17, 17, 17, 0.06);
-      --radius-xl: 34px;
-      --radius-lg: 24px;
+      --bg: #090909;
+      --bg-soft: #121212;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-strong: rgba(255, 255, 255, 0.07);
+      --text: #f6f1e7;
+      --muted: #b7b0a4;
+      --subtle: #7f7a71;
+      --line: rgba(246, 241, 231, 0.12);
+      --line-strong: rgba(246, 241, 231, 0.2);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --radius-xl: 36px;
+      --radius-lg: 26px;
       --radius-md: 18px;
       --content-width: min(1180px, calc(100% - 2rem));
     }
@@ -45,23 +45,37 @@
       margin: 0;
       min-height: 100vh;
       overflow-x: hidden;
-      font-family: "Plus Jakarta Sans", sans-serif;
+      font-family: "Manrope", sans-serif;
       color: var(--text);
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 36%),
+        linear-gradient(180deg, #060606 0%, #0d0d0d 100%);
     }
 
-    body::before {
+    body::before,
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
-      background-size: 104px 104px;
-      mask-image: radial-gradient(circle at center, black 32%, transparent 84%);
-      opacity: 0.12;
       z-index: -2;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 104px 104px;
+      mask-image: radial-gradient(circle at center, black 34%, transparent 82%);
+      opacity: 0.16;
+    }
+
+    body::after {
+      z-index: -1;
+      background:
+        radial-gradient(circle at 22% 12%, rgba(255, 255, 255, 0.04), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.03), transparent 26%);
+      opacity: 0.6;
     }
 
     a {
@@ -77,18 +91,18 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.022;
+      opacity: 0.028;
       background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      z-index: 120;
+      z-index: 130;
     }
 
     .scroll-progress {
       position: fixed;
       inset: 0 0 auto;
       height: 2px;
-      z-index: 150;
-      background: rgba(17, 17, 17, 0.06);
+      z-index: 160;
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .scroll-progress span {
@@ -103,7 +117,7 @@
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 140;
+      z-index: 150;
       padding: 1rem 0 0;
     }
 
@@ -116,22 +130,22 @@
       justify-content: space-between;
       gap: 1rem;
       border-bottom: 1px solid var(--line);
-      background: rgba(247, 244, 238, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(9, 9, 9, 0.76);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
-      text-decoration: none;
       min-width: 0;
+      text-decoration: none;
     }
 
     .brand-mark {
-      width: 0.7rem;
-      height: 0.7rem;
+      width: 0.72rem;
+      height: 0.72rem;
       flex-shrink: 0;
       border-radius: 50%;
       background: var(--text);
@@ -179,10 +193,11 @@
     }
 
     .site-nav .nav-cta {
-      color: var(--bg);
-      background: var(--text);
       padding: 0.72rem 1rem;
       border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .menu-button {
@@ -260,21 +275,25 @@
       min-height: calc(100vh - 6rem);
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-      gap: clamp(2rem, 5vw, 5.2rem);
+      gap: clamp(2rem, 5vw, 5.4rem);
       align-items: center;
-      padding: clamp(2rem, 6vw, 5.5rem) 0 3rem;
-      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+      padding: clamp(2rem, 6vw, 5.8rem) 0 3rem;
+      border-bottom: 1px solid rgba(246, 241, 231, 0.08);
+    }
+
+    .hero-title-wrap {
+      overflow: hidden;
     }
 
     .hero-title {
       margin: 0;
       max-width: 10ch;
-      font-size: clamp(3.6rem, 8vw, 7.6rem);
-      line-height: 0.9;
-      letter-spacing: -0.065em;
+      font-size: clamp(3.8rem, 8.2vw, 8rem);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
       text-wrap: balance;
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(100%);
     }
 
     .hero-title em {
@@ -283,14 +302,14 @@
       font-weight: 500;
     }
 
-    .hero-lead {
-      max-width: 56ch;
-      margin: 1.5rem 0 0;
+    .hero-subtitle {
+      display: block;
+      margin-top: 0.85rem;
       color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.84;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      letter-spacing: -0.02em;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(22px);
     }
 
     .hero-actions {
@@ -337,21 +356,21 @@
       background: transparent;
     }
 
-    .hero-meta {
+    .hero-proof {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 2.3rem;
+      margin-top: 2.4rem;
       opacity: 0;
       transform: translateY(18px);
     }
 
-    .meta-item {
-      padding-top: 0.9rem;
+    .proof-tile {
+      padding-top: 0.95rem;
       border-top: 1px solid var(--line);
     }
 
-    .meta-item span {
+    .proof-tile span {
       display: block;
       color: var(--subtle);
       font-size: 0.72rem;
@@ -359,15 +378,15 @@
       text-transform: uppercase;
     }
 
-    .meta-item strong {
+    .proof-tile strong {
       display: block;
-      margin-top: 0.5rem;
+      margin-top: 0.52rem;
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
 
-    .meta-item p {
+    .proof-tile p {
       margin: 0.42rem 0 0;
       color: var(--muted);
       font-size: 0.9rem;
@@ -376,7 +395,7 @@
 
     .hero-visual {
       position: relative;
-      min-height: 720px;
+      min-height: 730px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -385,22 +404,33 @@
     .portrait-frame {
       position: relative;
       width: min(100%, 500px);
-      min-height: 650px;
+      min-height: 660px;
       padding: 1rem;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      background: var(--surface-strong);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
       box-shadow: var(--shadow);
+      overflow: hidden;
       opacity: 0;
-      transform: translateY(22px) scale(0.986);
+      transform: translateY(20px) scale(0.988);
     }
 
     .portrait-inner {
       position: relative;
-      min-height: 618px;
+      min-height: 628px;
       overflow: hidden;
       border-radius: 28px;
-      background: linear-gradient(180deg, #f0ece5 0%, #e8e1d7 100%);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 40%),
+        linear-gradient(180deg, #171717 0%, #0d0d0d 100%);
+    }
+
+    .portrait-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 55%);
+      z-index: 0;
     }
 
     .hero-portrait {
@@ -410,39 +440,43 @@
       height: 100%;
       object-fit: contain;
       object-position: center bottom;
-      filter: grayscale(100%);
+      filter: grayscale(100%) contrast(1.05);
       transform: translate3d(0, 0, 0) scale(1.03);
       will-change: transform;
+      z-index: 1;
     }
 
     .portrait-caption {
       position: absolute;
-      left: 1.5rem;
-      right: 1.5rem;
-      bottom: 1.5rem;
+      left: 1.6rem;
+      right: 1.6rem;
+      bottom: 1.6rem;
       padding-top: 0.9rem;
-      border-top: 1px solid rgba(17, 17, 17, 0.12);
+      border-top: 1px solid rgba(246, 241, 231, 0.12);
       color: var(--muted);
       font-size: 0.92rem;
       line-height: 1.72;
       opacity: 0;
       transform: translateY(18px);
+      z-index: 2;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .portrait-caption strong {
       display: block;
       color: var(--text);
-      font-size: 0.86rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.5rem;
     }
 
     body.is-ready .hero-title,
-    body.is-ready .hero-lead,
+    body.is-ready .hero-subtitle,
     body.is-ready .hero-actions,
-    body.is-ready .hero-meta,
+    body.is-ready .hero-proof,
     body.is-ready .portrait-frame,
     body.is-ready .portrait-caption {
       opacity: 1;
@@ -450,27 +484,27 @@
     }
 
     body.is-ready .hero-title {
-      transition: opacity 0.84s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, transform 0.84s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+      transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
     }
 
-    body.is-ready .hero-lead {
-      transition: opacity 0.76s cubic-bezier(0.22, 1, 0.36, 1) 0.18s, transform 0.76s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+    body.is-ready .hero-subtitle {
+      transition: opacity 0.76s cubic-bezier(0.22, 1, 0.36, 1) 0.22s, transform 0.76s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
     }
 
     body.is-ready .hero-actions {
-      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.28s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.28s;
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.32s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
     }
 
-    body.is-ready .hero-meta {
-      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.38s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.38s;
+    body.is-ready .hero-proof {
+      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.42s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.42s;
     }
 
     body.is-ready .portrait-frame {
-      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.14s, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
+      transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.16s, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
     }
 
     body.is-ready .portrait-caption {
-      transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.42s, transform 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.42s;
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.48s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.48s;
     }
 
     .section {
@@ -487,52 +521,52 @@
 
     .section-heading h2 {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 3.9rem);
-      line-height: 0.96;
-      letter-spacing: -0.055em;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
       text-wrap: balance;
     }
 
     .section-heading p {
       margin: 0;
-      max-width: 38ch;
+      max-width: 36ch;
       color: var(--muted);
       line-height: 1.8;
     }
 
-    .overview-shell {
+    .story-shell {
       display: grid;
-      grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+      grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
       gap: clamp(1.5rem, 4vw, 3rem);
       align-items: start;
     }
 
-    .overview-intro {
+    .story-intro {
       position: sticky;
       top: 6.4rem;
     }
 
-    .overview-intro h2 {
+    .story-intro h2 {
       margin: 0;
-      font-size: clamp(2.1rem, 4vw, 4rem);
-      line-height: 0.96;
-      letter-spacing: -0.055em;
+      font-size: clamp(2.2rem, 4vw, 4.1rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
       text-wrap: balance;
     }
 
-    .overview-intro p {
+    .story-intro p {
       margin: 1rem 0 0;
       max-width: 30ch;
       color: var(--muted);
-      line-height: 1.84;
+      line-height: 1.82;
     }
 
-    .overview-index {
+    .story-index {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 4.6rem;
-      height: 4.6rem;
+      width: 4.7rem;
+      height: 4.7rem;
       margin-top: 2rem;
       border-radius: 50%;
       border: 1px solid var(--line-strong);
@@ -541,39 +575,41 @@
       font-style: italic;
     }
 
-    .overview-track {
+    .story-track {
       display: grid;
       gap: 1rem;
     }
 
-    .overview-step {
+    .story-step {
       min-height: 72vh;
       display: flex;
       align-items: center;
     }
 
-    .overview-card {
+    .story-card {
       width: 100%;
-      padding: 1.9rem;
+      padding: 1.95rem;
       border-radius: var(--radius-xl);
       border: 1px solid var(--line);
-      background: var(--surface-strong);
-      box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
-      opacity: 0.36;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+      opacity: 0.34;
       transform: translateY(24px);
       transition:
-        opacity 0.28s ease,
-        transform 0.28s ease,
-        border-color 0.28s ease;
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
-    .overview-step.is-active .overview-card {
+    .story-step.is-active .story-card {
       opacity: 1;
       transform: translateY(0);
       border-color: var(--line-strong);
+      box-shadow: 0 26px 56px rgba(0, 0, 0, 0.22);
     }
 
-    .overview-label {
+    .story-label {
       display: block;
       color: var(--subtle);
       font-size: 0.72rem;
@@ -581,60 +617,60 @@
       text-transform: uppercase;
     }
 
-    .overview-card h3 {
+    .story-card h3 {
       margin: 1rem 0 0;
-      font-size: clamp(1.8rem, 3vw, 2.9rem);
-      line-height: 1;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 0.98;
       letter-spacing: -0.05em;
       text-wrap: balance;
     }
 
-    .overview-card p {
+    .story-card p {
       margin: 1rem 0 0;
       max-width: 38ch;
       color: var(--muted);
       line-height: 1.86;
     }
 
-    .overview-points {
+    .story-points {
       margin: 1rem 0 0;
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 0.8rem;
+      gap: 0.82rem;
     }
 
-    .overview-points li {
+    .story-points li {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 0.75rem;
-      line-height: 1.78;
       color: var(--text);
+      line-height: 1.8;
     }
 
-    .overview-points li::before {
+    .story-points li::before {
       content: "";
       width: 0.44rem;
       height: 0.44rem;
-      margin-top: 0.66rem;
+      margin-top: 0.68rem;
       border-radius: 50%;
       background: var(--text);
     }
 
-    .work-grid {
+    .focus-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
     }
 
-    .work-card {
+    .focus-card {
       padding: 1.5rem;
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
       background: var(--surface);
     }
 
-    .work-card span {
+    .focus-card span {
       display: block;
       color: var(--subtle);
       font-size: 0.72rem;
@@ -642,14 +678,14 @@
       text-transform: uppercase;
     }
 
-    .work-card h3 {
+    .focus-card h3 {
       margin: 0.85rem 0 0;
-      font-size: 1.34rem;
+      font-size: 1.32rem;
       line-height: 1.08;
       letter-spacing: -0.03em;
     }
 
-    .work-card p {
+    .focus-card p {
       margin: 0.8rem 0 0;
       color: var(--muted);
       line-height: 1.8;
@@ -667,7 +703,7 @@
       min-height: 100%;
       border-radius: 28px;
       border: 1px solid var(--line);
-      background: var(--surface-strong);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
       overflow: hidden;
       text-decoration: none;
       transition:
@@ -680,7 +716,7 @@
     .press-card:focus-visible {
       transform: translateY(-3px);
       border-color: var(--line-strong);
-      box-shadow: 0 18px 40px rgba(17, 17, 17, 0.06);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
     }
 
     .press-card.featured {
@@ -699,7 +735,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(100%);
+      filter: grayscale(100%) contrast(1.04);
     }
 
     .press-placeholder {
@@ -708,7 +744,9 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      background: linear-gradient(180deg, #f1ece5 0%, #e8e1d7 100%);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.1), transparent 40%),
+        linear-gradient(180deg, #151515 0%, #0f0f0f 100%);
     }
 
     .press-placeholder span {
@@ -721,8 +759,8 @@
     .press-placeholder strong {
       display: block;
       margin-top: 0.8rem;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      line-height: 1;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      line-height: 0.98;
       letter-spacing: -0.04em;
       text-wrap: balance;
     }
@@ -747,7 +785,7 @@
 
     .press-card h3 {
       margin: 1rem 0 0;
-      font-size: clamp(1.34rem, 2vw, 1.96rem);
+      font-size: clamp(1.34rem, 2vw, 1.98rem);
       line-height: 1.08;
       letter-spacing: -0.04em;
       text-wrap: balance;
@@ -785,15 +823,15 @@
       padding: clamp(1.7rem, 3vw, 2.3rem);
       border-radius: var(--radius-xl);
       border: 1px solid var(--line);
-      background: var(--surface-strong);
-      box-shadow: 0 16px 34px rgba(17, 17, 17, 0.05);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
     }
 
     .connect-card h2 {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 3.6rem);
-      line-height: 0.96;
-      letter-spacing: -0.055em;
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
       text-wrap: balance;
     }
 
@@ -814,7 +852,7 @@
       padding: 1rem 1.1rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.56);
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .connect-link-card span {
@@ -841,7 +879,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      border-top: 1px solid rgba(17, 17, 17, 0.08);
+      border-top: 1px solid rgba(246, 241, 231, 0.08);
       color: var(--subtle);
       font-size: 0.82rem;
     }
@@ -864,10 +902,10 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(30px);
       transition:
-        opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.74s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.74s cubic-bezier(0.22, 1, 0.36, 1);
       transition-delay: var(--delay, 0s);
     }
 
@@ -880,7 +918,7 @@
       .hero,
       .section-heading,
       .connect-card,
-      .overview-shell {
+      .story-shell {
         grid-template-columns: 1fr;
       }
 
@@ -892,12 +930,12 @@
         min-height: 560px;
       }
 
-      .hero-meta,
-      .work-grid {
+      .hero-proof,
+      .focus-grid {
         grid-template-columns: 1fr;
       }
 
-      .overview-intro {
+      .story-intro {
         position: static;
       }
 
@@ -922,9 +960,9 @@
         gap: 0.45rem;
         padding: 0.8rem;
         border: 1px solid var(--line);
-        background: rgba(247, 244, 238, 0.96);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        background: rgba(9, 9, 9, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-8px);
@@ -937,9 +975,9 @@
 
       .site-nav a {
         padding: 0.95rem 1rem;
-        border: 1px solid rgba(17, 17, 17, 0.08);
+        border: 1px solid rgba(246, 241, 231, 0.08);
         border-radius: 18px;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.03);
       }
 
       .site-nav.is-open {
@@ -949,11 +987,11 @@
         pointer-events: auto;
       }
 
-      .overview-step {
+      .story-step {
         min-height: auto;
       }
 
-      .overview-card {
+      .story-card {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -974,7 +1012,7 @@
       }
 
       .header-bar {
-        padding: 0.8rem 0;
+        padding: 0.82rem 0;
       }
 
       .brand-copy span {
@@ -982,11 +1020,7 @@
       }
 
       .hero-title {
-        font-size: clamp(2.9rem, 14vw, 5rem);
-      }
-
-      .hero-lead {
-        font-size: 0.98rem;
+        font-size: clamp(3rem, 14vw, 5.2rem);
       }
 
       .hero-actions {
@@ -1009,10 +1043,10 @@
         min-height: 438px;
       }
 
-      .overview-intro h2,
+      .story-intro h2,
       .section-heading h2,
       .connect-card h2 {
-        font-size: clamp(1.9rem, 10vw, 3rem);
+        font-size: clamp(1.95rem, 10vw, 3rem);
       }
     }
 
@@ -1030,9 +1064,9 @@
 
       .reveal,
       .hero-title,
-      .hero-lead,
+      .hero-subtitle,
       .hero-actions,
-      .hero-meta,
+      .hero-proof,
       .portrait-frame,
       .portrait-caption {
         opacity: 1 !important;
@@ -1069,8 +1103,8 @@
       </button>
 
       <nav class="site-nav" id="siteNav" aria-label="Primary">
-        <a href="#overview">Overview</a>
-        <a href="#work">Work</a>
+        <a href="#story">Story</a>
+        <a href="#focus">Focus</a>
         <a href="#press">Press</a>
         <a href="#connect">Connect</a>
         <a
@@ -1086,35 +1120,36 @@
   <main>
     <section class="hero" aria-labelledby="heroTitle">
       <div>
-        <p class="eyebrow">Faizan Mir / Bristol / founder and robotics engineer</p>
-        <h1 class="hero-title" id="heroTitle">
-          Founder &amp; CEO at <em>nearhuman.co</em>.
-        </h1>
-        <p class="hero-lead">
-          Before Nearhuman, I co-founded three tech companies. Today I work across product, robotics,
-          embedded systems, and the early company decisions that move an idea into the real world.
-        </p>
+        <p class="eyebrow">Founder &amp; CEO / nearhuman.co / Bristol</p>
+        <div class="hero-title-wrap">
+          <h1 class="hero-title" id="heroTitle">
+            Building companies around <em>real technology</em>.
+          </h1>
+        </div>
+        <span class="hero-subtitle">
+          Founder &amp; CEO at nearhuman.co. Previously co-founded 3 tech companies.
+        </span>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="#overview">See The Overview</a>
-          <a class="button button-secondary" href="#connect">Get In Touch</a>
+          <a class="button button-primary" href="#story">See The Story</a>
+          <a class="button button-secondary" href="https://nearhuman.co" target="_blank" rel="noreferrer">Visit Nearhuman</a>
         </div>
 
-        <div class="hero-meta">
-          <div class="meta-item">
-            <span>Current role</span>
-            <strong>Founder &amp; CEO</strong>
-            <p>Leading nearhuman.co.</p>
+        <div class="hero-proof">
+          <div class="proof-tile">
+            <span>Now</span>
+            <strong>nearhuman.co</strong>
+            <p>Current company.</p>
           </div>
-          <div class="meta-item">
-            <span>Before Nearhuman</span>
+          <div class="proof-tile">
+            <span>Before</span>
             <strong>3 tech companies</strong>
-            <p>Co-founded before starting the current company.</p>
+            <p>Co-founded before Nearhuman.</p>
           </div>
-          <div class="meta-item">
+          <div class="proof-tile">
             <span>Inside Nearhuman</span>
             <strong>Scootrr</strong>
-            <p>A Nearhuman subbrand, not a separate company.</p>
+            <p>A subbrand, not a separate company.</p>
           </div>
         </div>
       </div>
@@ -1130,66 +1165,66 @@
             >
           </div>
           <div class="portrait-caption">
-            <strong>Best fit</strong>
-            Work that needs real building, clear thinking, and fast movement before everything is figured out.
+            <strong>What I do</strong>
+            Product. Robotics. Embedded systems. Company-building.
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="overview">
-      <div class="overview-shell">
-        <div class="overview-intro">
-          <p class="section-kicker">Overview</p>
-          <h2>The short version.</h2>
+    <section class="section" id="story">
+      <div class="story-shell">
+        <div class="story-intro">
+          <p class="section-kicker">Story</p>
+          <h2>Three facts. One clear picture.</h2>
           <p>
-            This is the clearest way to understand the work: what I run now, what came before it, and how Scootrr fits in.
+            The site should explain the story fast. No detours.
           </p>
-          <div class="overview-index" id="overviewIndex">01</div>
+          <div class="story-index" id="storyIndex">01</div>
         </div>
 
-        <div class="overview-track">
-          <article class="overview-step is-active" data-step="01">
-            <div class="overview-card">
-              <span class="overview-label">Step 01</span>
-              <h3>Now: Founder &amp; CEO at nearhuman.co.</h3>
+        <div class="story-track">
+          <article class="story-step is-active" data-step="01">
+            <div class="story-card">
+              <span class="story-label">01</span>
+              <h3>Current: Founder &amp; CEO at nearhuman.co.</h3>
               <p>
-                Nearhuman is the current company. It is the main thing I am building now and the clearest expression of how I like to work.
+                Nearhuman is the company I am building now. It is the main platform for the work and the clearest expression of where I am focused.
               </p>
-              <ul class="overview-points">
+              <ul class="story-points">
                 <li>Current role: Founder &amp; CEO.</li>
                 <li>Work spans product, robotics, and embedded systems.</li>
-                <li>The company is the main platform for what comes next.</li>
+                <li>The company comes first in the story.</li>
               </ul>
             </div>
           </article>
 
-          <article class="overview-step" data-step="02">
-            <div class="overview-card">
-              <span class="overview-label">Step 02</span>
-              <h3>Before Nearhuman: I co-founded three tech companies.</h3>
+          <article class="story-step" data-step="02">
+            <div class="story-card">
+              <span class="story-label">02</span>
+              <h3>Track record: three tech companies before Nearhuman.</h3>
               <p>
-                Nearhuman is not the first time I have built from zero. Before it, I co-founded three other tech companies.
+                Nearhuman is not the first build. Before it, I co-founded three tech companies. That experience shapes the way I work now.
               </p>
-              <ul class="overview-points">
-                <li>The pattern is consistent: start, build, and carry forward.</li>
-                <li>The work is not just technical; it is company-building too.</li>
-                <li>That experience shapes how I operate now.</li>
+              <ul class="story-points">
+                <li>Start from zero.</li>
+                <li>Build the thing itself.</li>
+                <li>Build the company around it.</li>
               </ul>
             </div>
           </article>
 
-          <article class="overview-step" data-step="03">
-            <div class="overview-card">
-              <span class="overview-label">Step 03</span>
-              <h3>Scootrr sits inside Nearhuman as a subbrand.</h3>
+          <article class="story-step" data-step="03">
+            <div class="story-card">
+              <span class="story-label">03</span>
+              <h3>Scootrr belongs inside Nearhuman.</h3>
               <p>
-                Scootrr should be read as part of Nearhuman, not as a separate company. It belongs inside the current system, not next to it.
+                Scootrr should be understood as a Nearhuman subbrand. It supports the current company story instead of competing with it.
               </p>
-              <ul class="overview-points">
-                <li>Scootrr is a Nearhuman subbrand.</li>
-                <li>It supports the current company story rather than splitting it.</li>
-                <li>The website now reflects that relationship clearly.</li>
+              <ul class="story-points">
+                <li>Scootrr is not a separate company.</li>
+                <li>It sits inside Nearhuman.</li>
+                <li>The relationship is now explicit.</li>
               </ul>
             </div>
           </article>
@@ -1197,34 +1232,34 @@
       </div>
     </section>
 
-    <section class="section reveal" id="work">
+    <section class="section reveal" id="focus">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">Work</p>
-          <h2>What I spend time building.</h2>
+          <p class="section-kicker">Focus</p>
+          <h2>Where the work sits.</h2>
         </div>
         <p>
-          The work usually sits across three layers at once: product, engineering, and company-building.
+          The work usually lives across product, engineering, and company-building at the same time.
         </p>
       </div>
 
-      <div class="work-grid">
-        <article class="work-card reveal" style="--delay: 0.06s">
+      <div class="focus-grid">
+        <article class="focus-card reveal" style="--delay: 0.06s">
           <span>Product</span>
-          <h3>Turning an idea into something people can use.</h3>
-          <p>Early versions, clearer direction, faster decisions, and something concrete to react to.</p>
+          <h3>Turn an idea into something usable.</h3>
+          <p>Get to a version people can actually see, test, and react to.</p>
         </article>
 
-        <article class="work-card reveal" style="--delay: 0.12s">
+        <article class="focus-card reveal" style="--delay: 0.12s">
           <span>Engineering</span>
-          <h3>Robotics, electronics, and embedded systems.</h3>
-          <p>Work that has to function in the real world, not just look convincing in a deck.</p>
+          <h3>Build what has to work in the real world.</h3>
+          <p>Robotics, electronics, and embedded systems without hand-waving.</p>
         </article>
 
-        <article class="work-card reveal" style="--delay: 0.18s">
+        <article class="focus-card reveal" style="--delay: 0.18s">
           <span>Company</span>
-          <h3>Building the business around the work.</h3>
-          <p>Structure, message, traction, and the decisions that turn effort into a company people understand.</p>
+          <h3>Build the business around the work.</h3>
+          <p>Structure, message, and traction once the technical core is real.</p>
         </article>
       </div>
     </section>
@@ -1233,10 +1268,10 @@
       <div class="section-heading">
         <div>
           <p class="section-kicker">Press</p>
-          <h2>Outside writing on the work.</h2>
+          <h2>Outside coverage.</h2>
         </div>
         <p>
-          A small set of features and competition coverage that put the work in public view.
+          Features and competition coverage tied directly to the work.
         </p>
       </div>
 
@@ -1249,7 +1284,7 @@
           <p class="section-kicker">Connect</p>
           <h2>If you want to talk, start here.</h2>
           <p>
-            LinkedIn is the cleanest way in. Nearhuman shows the current company. Scootrr sits inside that story, not beside it.
+            LinkedIn is the cleanest route in. Nearhuman is the current company. Scootrr sits inside that system.
           </p>
           <div class="hero-actions reveal" style="--delay: 0.08s">
             <a
@@ -1260,7 +1295,7 @@
             >Open LinkedIn</a>
             <a
               class="button button-secondary"
-              href="https://www.linkedin.com/company/nearhuman/"
+              href="https://nearhuman.co"
               target="_blank"
               rel="noreferrer"
             >Open Nearhuman</a>
@@ -1273,7 +1308,7 @@
             <strong>nearhuman.co</strong>
             <a
               class="connect-link"
-              href="https://www.linkedin.com/company/nearhuman/"
+              href="https://nearhuman.co"
               target="_blank"
               rel="noreferrer"
             >Visit company</a>
@@ -1308,8 +1343,8 @@
   <footer class="site-footer">
     <div>&copy; <span id="year"></span> Faizan Mir</div>
     <div class="footer-links">
-      <a href="#overview">Overview</a>
-      <a href="#work">Work</a>
+      <a href="#story">Story</a>
+      <a href="#focus">Focus</a>
       <a href="#press">Press</a>
       <a href="#connect">Connect</a>
     </div>
@@ -1357,8 +1392,8 @@
     const navLinks = siteNav.querySelectorAll("a");
     const progressBar = document.getElementById("scrollProgressBar");
     const heroPortrait = document.getElementById("heroPortrait");
-    const overviewIndex = document.getElementById("overviewIndex");
-    const overviewSteps = Array.from(document.querySelectorAll(".overview-step"));
+    const storyIndex = document.getElementById("storyIndex");
+    const storySteps = Array.from(document.querySelectorAll(".story-step"));
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     pressArticles.forEach((article, index) => {
@@ -1429,19 +1464,19 @@
         return;
       }
 
-      const shift = Math.min(window.scrollY * 0.03, 14);
+      const shift = Math.min(window.scrollY * 0.028, 14);
       heroPortrait.style.transform = `translate3d(0, ${shift * -1}px, 0) scale(1.03)`;
     }
 
-    function updateOverviewState() {
-      if (!overviewSteps.length) {
+    function updateStoryState() {
+      if (!storySteps.length) {
         return;
       }
 
-      let active = overviewSteps[0];
+      let active = storySteps[0];
       let bestDistance = Number.POSITIVE_INFINITY;
 
-      overviewSteps.forEach((step) => {
+      storySteps.forEach((step) => {
         const rect = step.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
         const distance = Math.abs(center - window.innerHeight / 2);
@@ -1452,12 +1487,12 @@
         }
       });
 
-      overviewSteps.forEach((step) => {
+      storySteps.forEach((step) => {
         step.classList.toggle("is-active", step === active);
       });
 
-      if (overviewIndex) {
-        overviewIndex.textContent = active.dataset.step || "01";
+      if (storyIndex) {
+        storyIndex.textContent = active.dataset.step || "01";
       }
     }
 
@@ -1466,7 +1501,7 @@
     function updateOnScroll() {
       updateProgressBar();
       updatePortraitParallax();
-      updateOverviewState();
+      updateStoryState();
       ticking = false;
     }
 
