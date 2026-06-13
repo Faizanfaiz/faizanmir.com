@@ -1555,8 +1555,14 @@ body.hub-on main > section::-webkit-scrollbar-thumb:hover {
     gap: 2rem;
   }
   .ventures-grid,
-  .press-grid {
+  .awards,
+  .about-grid,
+  body.hub-on .press-grid {
     grid-template-columns: 1fr;
+  }
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 }
 

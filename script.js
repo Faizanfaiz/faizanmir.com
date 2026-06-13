@@ -286,6 +286,7 @@
     clearActive();
     document.body.classList.add("hub-open");
     panels[id].classList.add("is-active");
+    panels[id].scrollTop = 0;
     const node = nodes.find((n) => n.dataset.panel === id);
     if (node) {
       node.classList.add("is-active");
@@ -323,10 +324,6 @@
     document.body.classList.add("hub-on");
     hub.setAttribute("aria-hidden", "false");
     syncFromHash(false);
-    // Trigger the entrance animation on the next frame.
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => document.body.classList.add("hub-ready"))
-    );
   }
 
   function deactivate() {
@@ -336,7 +333,7 @@
     hoverIdx = null;
     activeIdx = null;
     if (stage) stage.classList.remove("is-aiming");
-    document.body.classList.remove("hub-on", "hub-open", "hub-ready");
+    document.body.classList.remove("hub-on", "hub-open");
     hub.setAttribute("aria-hidden", "true");
   }
 
